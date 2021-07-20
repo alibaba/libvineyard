@@ -1,0 +1,2142 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Python API Reference &mdash; vineyard  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/vineyard.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Frequently Asked Questions" href="faq.html" />
+    <link rel="prev" title="C++ API Reference" href="cpp_api.html" />
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CYXWKLJB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CYXWKLJB8');
+</script>
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> vineyard
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="divein.html">Diving into vineyard</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#objectid-and-object">ObjectID and Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#metadata-of-objects">Metadata of objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connect-to-vineyard">Connect to vineyard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#state-of-server">State of server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#primitives">Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shared-memory">Shared Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployment">Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#io-facilities">IO Facilities</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to vineyard</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vineyard</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Python API Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/notes/python_api.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="python-api-reference">
+<h1>Python API Reference<a class="headerlink" href="#python-api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<span id="python-api"></span><ul class="simple">
+<li><p><a class="reference internal" href="#objectid-and-object" id="id2">ObjectID and Object</a></p></li>
+<li><p><a class="reference internal" href="#metadata-of-objects" id="id3">Metadata of objects</a></p></li>
+<li><p><a class="reference internal" href="#connect-to-vineyard" id="id4">Connect to vineyard</a></p></li>
+<li><p><a class="reference internal" href="#state-of-server" id="id5">State of server</a></p></li>
+<li><p><a class="reference internal" href="#primitives" id="id6">Primitives</a></p></li>
+<li><p><a class="reference internal" href="#shared-memory" id="id7">Shared Memory</a></p></li>
+<li><p><a class="reference internal" href="#deployment" id="id8">Deployment</a></p></li>
+<li><p><a class="reference internal" href="#io-facilities" id="id9">IO Facilities</a></p></li>
+</ul>
+</div>
+<div class="section" id="objectid-and-object">
+<h2><a class="toc-backref" href="#id2">ObjectID and Object</a><a class="headerlink" href="#objectid-and-object" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.ObjectID">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">ObjectID</span></span><a class="headerlink" href="#vineyard.ObjectID" title="Permalink to this definition">¶</a></dt>
+<dd><p>Opaque type for vineyard’s object id. The object ID is generated by vineyard server, the
+underlying type of <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectID</span></code></a> is a 64-bit unsigned integer. Wrapper utilities
+are provided to interact with the external python world.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span> <span class="o">=</span> <span class="n">ObjectID</span><span class="p">(</span><span class="s2">&quot;000043c5c6d5e646&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">id</span>
+<span class="go">000043c5c6d5e646</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">repr</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<span class="go">&#39;000043c5c6d5e646&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<span class="go">ObjectID &lt;&quot;000043c5c6d5e646&quot;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+<span class="go">74516723525190</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.Object">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">Object</span></span><a class="headerlink" href="#vineyard.Object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for vineyard objects.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Object.id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#vineyard.Object.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The object id of this object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Object.isglobal">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">isglobal</span></span><a class="headerlink" href="#vineyard.Object.isglobal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the object is a global object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Object.islocal">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">islocal</span></span><a class="headerlink" href="#vineyard.Object.islocal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the object is a local object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Object.ispersist">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">ispersist</span></span><a class="headerlink" href="#vineyard.Object.ispersist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the object is a persistent object. The word “persistent” means the object could
+be seen by clients that connect to other vineyard server instances.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.Object.member">
+<span class="sig-name descname"><span class="pre">member</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.Object.member" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a></dt>
+<dd></dd></dl>
+
+<p>Get the member object of this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – str
+The name of the member object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The member object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#vineyard.Object" title="vineyard.Object">Object</a></p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>ObjectMeta.get, ObjectMeta.__getitem__</p>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Object.meta">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#vineyard.Object.meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>The metadata of this object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Object.nbytes">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">nbytes</span></span><a class="headerlink" href="#vineyard.Object.nbytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The nbytes of this object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Object.signature">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">signature</span></span><a class="headerlink" href="#vineyard.Object.signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>The object signature of this object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Object.typename">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">typename</span></span><a class="headerlink" href="#vineyard.Object.typename" title="Permalink to this definition">¶</a></dt>
+<dd><p>The typename of this object. <code class="code docutils literal notranslate"><span class="pre">typename</span></code> is the string value of the C++ type, e.g.,
+<code class="code docutils literal notranslate"><span class="pre">vineyard::Array&lt;int&gt;</span></code>, <code class="code docutils literal notranslate"><span class="pre">vineyard::Table</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.ObjectBuilder">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">ObjectBuilder</span></span><a class="headerlink" href="#vineyard.ObjectBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for vineyard object builders.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="metadata-of-objects">
+<h2><a class="toc-backref" href="#id3">Metadata of objects</a><a class="headerlink" href="#metadata-of-objects" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">ObjectMeta</span></span><a class="headerlink" href="#vineyard.ObjectMeta" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectMeta</span></code></a> is the type for metadata of an <a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">Object</span></code></a>.
+The <a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectMeta</span></code></a> can be treat as a <em>dict-like</em> type. If the the metadata if
+the metadata obtained from vineyard, the metadata is readonly. Otherwise <em>key-value</em>
+attributes or object members could be associated with the metadata to construct a
+new vineyard object.</p>
+<p>We can inspect the <em>key-value</em> attributes and members of an <a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectMeta</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">meta</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_meta</span><span class="p">(</span><span class="n">hashmap_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meta</span>
+<span class="go">ObjectMeta {</span>
+<span class="go">    &quot;id&quot;: &quot;0000347aebe92dd0&quot;,</span>
+<span class="go">    &quot;instance_id&quot;: &quot;0&quot;,</span>
+<span class="go">    ...</span>
+<span class="go">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;num_elements_&#39;</span><span class="p">]</span>
+<span class="go">&#39;5&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;entries&#39;</span><span class="p">]</span>
+<span class="go">ObjectMeta {</span>
+<span class="go">    &quot;id&quot;: &quot;0000347aebe92dd0&quot;,</span>
+<span class="go">    &quot;instance_id&quot;: &quot;0&quot;,</span>
+<span class="go">    ...</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectMeta</span></code></a> value can be iterated over:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;entries&#39;</span><span class="p">])</span>
+<span class="go">[&#39;transient&#39;, &#39;num_slots_minus_one_&#39;, &#39;max_lookups_&#39;, &#39;num_elements_&#39;, &#39;entries_&#39;,</span>
+<span class="go"> &#39;nbytes&#39;, &#39;typename&#39;, &#39;instance_id&#39;, &#39;id&#39;]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.__contains__">
+<span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.ObjectMeta.__contains__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if given key exists in the object metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> – str
+The name to be looked up.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="code docutils literal notranslate"><span class="pre">True</span></code> if the queried key exists in this object metadata, otherwise <code class="code docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.ObjectMeta.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">string</span> <span class="pre">or</span> <span class="pre">Object</span></dt>
+<dd></dd></dl>
+
+<p>Get meta or member’s meta from metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> – str
+The name to be looked up.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>string</em> – If the given key is a key of meta, returns the meta value.</p></li>
+<li><p><em>Object</em> – If the given key is a key of member, return the meta of this member.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.ObjectMeta.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">global_</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<p>Create an empty metadata, the metadata will be used to create a vineyard object.</p>
+<dl class="simple">
+<dt>Parameters</dt><dd><p><a href="#id10"><span class="problematic" id="id11">global_</span></a>: bool, if the object meta is for creating a global object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.__setitem__">
+<span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.ObjectMeta.__setitem__" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Add a metadata to the ObjectMeta.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – str
+The name of the new metadata entry.</p></li>
+<li><p><strong>value</strong> – <p>str, int, float, bool or list of int
+The value of the new metadata entry.</p>
+<ul>
+<li><p>When the value is a <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, it will be convert to string at first.</p></li>
+<li><p>When the value is a list of str, int or float, it will be first dumpped as string
+using <code class="code docutils literal notranslate"><span class="pre">json.dumps</span></code>.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">key:</span> <span class="pre">str</span></em>, <em class="sig-param"><span class="pre">ObjectID</span></em>, <em class="sig-param"><span class="pre">Object</span> <span class="pre">or</span> <span class="pre">ObjectMeta</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Add a member object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – str
+The name of the member object.</p></li>
+<li><p><strong>object</strong> – <a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">Object</span></code></a>, <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectID</span></code></a> or <a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectMeta</span></code></a>
+The reference to the member object or the object id of the member object.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.add_member">
+<span class="sig-name descname"><span class="pre">add_member</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.ObjectMeta.add_member" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">add_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">self</span></em>, <em class="sig-param"><span class="pre">key:</span> <span class="pre">str</span></em>, <em class="sig-param"><span class="pre">ObjectID</span></em>, <em class="sig-param"><span class="pre">Object</span> <span class="pre">or</span> <span class="pre">ObjectMeta</span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Add a member object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> – str
+The name of the member object.</p></li>
+<li><p><strong>object</strong> – <a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">Object</span></code></a>, <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectID</span></code></a> or <a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectMeta</span></code></a>
+The reference to the member object or the object id of the member object.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.ObjectMeta.get" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">string</span> <span class="pre">or</span> <span class="pre">Object</span></dt>
+<dd></dd></dl>
+
+<p>Get meta or member’s meta from metadata, return default value if the given key is not presented.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> – str
+The name to be looked up.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>str</em> – When the given <code class="code docutils literal notranslate"><span class="pre">key</span></code> belongs to a metadata pair. Note that the metadata value of
+type int or float will be returned in string format as well.</p></li>
+<li><p><em>ObjectMeta</em> – When the given <code class="code docutils literal notranslate"><span class="pre">key</span></code> is mapped to a member object.</p></li>
+<li><p><em>See Also</em> – ObjectMeta.__getitem__</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.get_member">
+<span class="sig-name descname"><span class="pre">get_member</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.ObjectMeta.get_member" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_member</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a></dt>
+<dd></dd></dl>
+
+<p>Get member object from metadata, return None if the given key is not presented, and raise exception
+RuntimeError if the given key is associated with a plain metadata, rather than member object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> – str
+The name to be looked up.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – When the given key is associated with a plain metadata, rather than member object.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>ObjectMeta.__getitem__, ObjectMeta.get</p>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#vineyard.ObjectMeta.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The corresponding object ID of this metadata.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.instance_id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">instance_id</span></span><a class="headerlink" href="#vineyard.ObjectMeta.instance_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <code class="code docutils literal notranslate"><span class="pre">&quot;instance_id&quot;</span></code> of vineyard instance that the metadata been placed on.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.isglobal">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">isglobal</span></span><a class="headerlink" href="#vineyard.ObjectMeta.isglobal" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the object is a global object, otherwise a local object or remote object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.islocal">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">islocal</span></span><a class="headerlink" href="#vineyard.ObjectMeta.islocal" title="Permalink to this definition">¶</a></dt>
+<dd><p>True if the object is a local object, otherwise a global object or remote object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.nbytes">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">nbytes</span></span><a class="headerlink" href="#vineyard.ObjectMeta.nbytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <code class="code docutils literal notranslate"><span class="pre">&quot;nbytes&quot;</span></code> attribute of this metadata.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.set_global">
+<span class="sig-name descname"><span class="pre">set_global</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.ObjectMeta.set_global" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mark the building object as a global object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>global</strong> – bool, default is True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.signature">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">signature</span></span><a class="headerlink" href="#vineyard.ObjectMeta.signature" title="Permalink to this definition">¶</a></dt>
+<dd><p>The corresponding object signature of this metadata.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.ObjectMeta.typename">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">typename</span></span><a class="headerlink" href="#vineyard.ObjectMeta.typename" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <code class="code docutils literal notranslate"><span class="pre">&quot;typename&quot;</span></code> attribute of this metadata.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="connect-to-vineyard">
+<h2><a class="toc-backref" href="#id4">Connect to vineyard</a><a class="headerlink" href="#connect-to-vineyard" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="vineyard.connect">
+<span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.connect" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.IPCClient" title="vineyard.IPCClient"><span class="pre">IPCClient</span></a></dt>
+<dd><p>Connect to vineyard via UNIX domain socket for IPC service:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">vineyard</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;/var/run/vineyard.sock&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Parameters:</dt><dd><dl class="simple">
+<dt>endpoint: str</dt><dd><p>UNIX domain socket path to setup an IPC connection.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>IPCClient: The connected IPC client.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span> <span class="pre">or</span> <span class="pre">str</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.RPCClient" title="vineyard.RPCClient"><span class="pre">RPCClient</span></a></dt>
+<dd><p>Connect to vineyard via TCP socket.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><dl class="simple">
+<dt>host: str</dt><dd><p>Hostname to connect to.</p>
+</dd>
+<dt>port: int or str</dt><dd><p>The TCP that listened by vineyard TCP service.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>RPCClient: The connected RPC client.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">endpoint</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">(str,</span> <span class="pre">int</span> <span class="pre">or</span> <span class="pre">str)</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.RPCClient" title="vineyard.RPCClient"><span class="pre">RPCClient</span></a></dt>
+<dd><p>Connect to vineyard via TCP socket.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><dl class="simple">
+<dt>endpoint: tuple(str, int or str)</dt><dd><p>Endpoint to connect to. The parameter is a tuple, in which the first element
+is the host, and the second parameter, can be int a str, is the port.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>RPCClient: The connected RPC client.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">IPCClient</span> <span class="pre">or</span> <span class="pre">RPCClient</span></dt>
+<dd><p>Connect to vineyard via UNIX domain socket or TCP endpoint. This method normally
+usually no arguments, and will first tries to resolve IPC socket from the
+environment variable <cite>VINEYARD_IPC_SOCKET</cite> and connect to it. If it fails to
+establish a connection with vineyard server, the method will tries to resolve
+RPC endpoint from the environment variable <cite>VINEYARD_RPC_ENDPOINT</cite>.</p>
+<p>If both tries are failed, this method will raise a <code class="xref py py-class docutils literal notranslate"><span class="pre">ConnectionFailed</span></code>
+exception.</p>
+<p>In rare cases, user may be not sure about if the IPC socket or RPC endpoint
+is available, i.e., the variable might be <code class="code docutils literal notranslate"><span class="pre">None</span></code>. In such cases this method
+can accept a <cite>None</cite> as arguments, and do resolution as described above.</p>
+<dl class="simple">
+<dt>Raises:</dt><dd><p>ConnectionFailed</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.IPCClient">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">IPCClient</span></span><a class="headerlink" href="#vineyard.IPCClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>IPC client that connects to vineyard instance’s UNIX domain socket.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.allocated_size">
+<span class="sig-name descname"><span class="pre">allocated_size</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.allocated_size" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">allocated_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Object</span> <span class="pre">or</span> <span class="pre">ObjectID</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">int</span></dt>
+<dd></dd></dl>
+
+<p>Get the allocated size of the given object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target</strong> – Object or ObjectID
+The given Object.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the client.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.IPCClient.connected">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">connected</span></span><a class="headerlink" href="#vineyard.IPCClient.connected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the client instance has been connected to the vineyard server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.create_blob">
+<span class="sig-name descname"><span class="pre">create_blob</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.create_blob" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">create_blob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.Blob" title="vineyard.Blob"><span class="pre">Blob</span></a></dt>
+<dd></dd></dl>
+
+<p>Allocate a blob in vineyard server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>size</strong> – int
+The size of blob that will be allocated on vineyardd.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>BlobBuilder</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.create_empty_blob">
+<span class="sig-name descname"><span class="pre">create_empty_blob</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.create_empty_blob" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">create_empty_blob</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.Blob" title="vineyard.Blob"><span class="pre">Blob</span></a></dt>
+<dd></dd></dl>
+
+<p>Create an empty blob in vineyard server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Blob</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.create_metadata">
+<span class="sig-name descname"><span class="pre">create_metadata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.create_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">create_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a></dt>
+<dd></dd></dl>
+
+<p>Create metadata in vineyardd.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>metadata</strong> – ObjectMeta
+The metadata that will be created on vineyardd.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result created metadata.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.delete" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">ObjectID</span> <span class="pre">or</span> <span class="pre">List[ObjectID]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">false</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">true</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Delete the specific vineyard object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object_id</strong> – ObjectID or list of ObjectID
+Objects that will be deleted. The <code class="code docutils literal notranslate"><span class="pre">object_id</span></code> can be a single <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectID</span></code></a>, or a list of
+<a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectID</span></code></a>.</p></li>
+<li><p><strong>force</strong> – bool
+Forcedly delete an object means the member will be recursively deleted even if the
+member object is also referred by others. The default value is <code class="code docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>deep</strong> – <p>bool
+Deeply delete an object means we will deleting the members recursively. The default
+value is <code class="code docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>Note that when deleting objects which have <em>direct</em> blob members, the
+processing on those blobs yields a “deep” behavior.</p>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_meta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">false</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">true</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Delete the specific vineyard object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_meta</strong> – The corresponding object meta to delete.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">false</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">true</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Delete the specific vineyard object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object</strong> – The corresponding object meta to delete.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.drop_name">
+<span class="sig-name descname"><span class="pre">drop_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.drop_name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">drop_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span> <span class="pre">or</span> <span class="pre">ObjectName</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Remove the association of the given name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – str
+The name that will be removed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.exists" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span></dt>
+<dd></dd></dl>
+
+<p>Whether the given object exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_id</strong> – ObjectID
+The object id to check if exists.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="code docutils literal notranslate"><span class="pre">True</span></code> when the specified object exists.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get vineyard object as python value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr_id</span> <span class="o">=</span> <span class="n">vineyard</span><span class="o">.</span><span class="n">ObjectID</span><span class="p">(</span><span class="s1">&#39;00002ec13bc81226&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">arr_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span>
+<span class="go">array([0, 1, 2, 3, 4, 5, 6, 7])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client</strong> – IPCClient or RPCClient
+The vineyard client to use.</p></li>
+<li><p><strong>object_id</strong> – ObjectID
+The object id that will be obtained from vineyard.</p></li>
+<li><p><strong>resolver</strong> – When retrieving vineyard object, an optional <em>resolver</em> can be specified.
+If no resolver given, the default resolver context will be used.</p></li>
+<li><p><strong>kw</strong> – User-specific argument that will be passed to the builder.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A python object that return by the resolver, by resolving an vineyard object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.get_meta">
+<span class="sig-name descname"><span class="pre">get_meta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.get_meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_remote</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a></dt>
+<dd></dd></dl>
+
+<p>Get object metadata from vineyard.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object_id</strong> – ObjectID
+The object id to get.</p></li>
+<li><p><strong>sync_remote</strong> – bool
+If the target object is a remote object, <code class="code docutils literal notranslate"><span class="pre">code_remote=True</span></code> will force
+a meta synchronization on the vineyard server. Default is <code class="code docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ObjectMeta</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.get_metas">
+<span class="sig-name descname"><span class="pre">get_metas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.get_metas" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_metas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sync_remote</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a><span class="p"><span class="pre">]</span></span></dt>
+<dd></dd></dl>
+
+<p>Get metadatas of multiple objects from vineyard.</p>
+<dl class="simple">
+<dt>Paramters:</dt><dd><dl class="simple">
+<dt>object_ids: List[ObjectID]</dt><dd><p>The object ids to get.</p>
+</dd>
+<dt>sync_remote: bool</dt><dd><p>If the target object is a remote object, <code class="code docutils literal notranslate"><span class="pre">code_remote=True</span></code> will force
+a meta synchronization on the vineyard server. Default is <code class="code docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List[ObjectMeta]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span> <span class="pre">or</span> <span class="pre">ObjectName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></dt>
+<dd></dd></dl>
+
+<p>Get the associated object id of the given name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – str
+The name that will be queried.</p></li>
+<li><p><strong>wait</strong> – bool
+Whether to wait util the name appears, if wait, the request will be blocked
+until the name been registered.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The associated object id with the name.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID">ObjectID</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.get_object">
+<span class="sig-name descname"><span class="pre">get_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.get_object" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a></dt>
+<dd></dd></dl>
+
+<p>Get object from vineyard.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_id</strong> – ObjectID
+The object id to get.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.get_objects">
+<span class="sig-name descname"><span class="pre">get_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.get_objects" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a><span class="p"><span class="pre">]</span></span></dt>
+<dd></dd></dl>
+
+<p>Get multiple objects from vineyard.</p>
+<dl class="simple">
+<dt>Paramters:</dt><dd><p>object_ids: List[ObjectID]</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List[Object]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.IPCClient.instance_id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">instance_id</span></span><a class="headerlink" href="#vineyard.IPCClient.instance_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The instance id of the connected vineyard server.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.IPCClient.ipc_socket">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">ipc_socket</span></span><a class="headerlink" href="#vineyard.IPCClient.ipc_socket" title="Permalink to this definition">¶</a></dt>
+<dd><p>The UNIX domain socket location of connected vineyard server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.list_objects">
+<span class="sig-name descname"><span class="pre">list_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.list_objects" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">list_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a><span class="p"><span class="pre">]</span></span></dt>
+<dd></dd></dl>
+
+<p>List all objects in current vineyard server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pattern</strong> – str
+The pattern string that will be matched against the object’s typename.</p></li>
+<li><p><strong>regex</strong> – bool
+Whether the pattern is a regex expression, otherwise the pattern will be used as
+wildcard pattern.</p></li>
+<li><p><strong>limit</strong> – int
+The limit to list.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List[Object]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.IPCClient.meta">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#vineyard.IPCClient.meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>The metadata information of the vineyard server. The value is a  nested dict, the first-level
+key is the instance id, and the second-level key is the cluster metadata fields.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">meta</span>
+<span class="go">{</span>
+<span class="go">    14: {</span>
+<span class="go">        &#39;hostid&#39;: &#39;54058007061210&#39;,</span>
+<span class="go">        &#39;hostname&#39;: &#39;127.0.0.1&#39;,</span>
+<span class="go">        &#39;timestamp&#39;: &#39;6882550126788354072&#39;</span>
+<span class="go">    },</span>
+<span class="go">    15: {</span>
+<span class="go">        &#39;hostid&#39;: &#39;48843417291806&#39;,</span>
+<span class="go">        &#39;hostname&#39;: &#39;127.0.0.1&#39;,</span>
+<span class="go">        &#39;timestamp&#39;: &#39;6882568290204737414&#39;</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.persist">
+<span class="sig-name descname"><span class="pre">persist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.persist" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">persist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Persist the object of the given object id. After persisting, the object will be visible by clients that
+connect to other vineyard server instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_id</strong> – ObjectID
+The object that will be persist.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">persist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_meta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Persist the given object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_meta</strong> – ObjectMeta
+The object that will be persist.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">persist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Persist the given object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object</strong> – Object
+The object that will be persist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put python value to vineyard.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr_id</span>
+<span class="go">00002ec13bc81226</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client</strong> – IPCClient
+The vineyard client to use.</p></li>
+<li><p><strong>value</strong> – The python value that will be put to vineyard. Supported python value types are
+decided by modules that registered to vineyard. By default, python value can be
+put to vineyard after serialized as a bytes buffer using pickle.</p></li>
+<li><p><strong>builder</strong> – When putting python value to vineyard, an optional <em>builder</em> can be specified to
+tell vineyard how to construct the corresponding vineyard <a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">Object</span></code></a>. If not
+specified, the default builder context will be used to select a proper builder.</p></li>
+<li><p><strong>kw</strong> – User-specific argument that will be passed to the builder.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result object id will be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID">ObjectID</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.put_name">
+<span class="sig-name descname"><span class="pre">put_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.put_name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">put_name(object:</span> <span class="pre">ObjectID</span> <span class="pre">or</span> <span class="pre">ObjectMeta</span> <span class="pre">or</span> <span class="pre">Object,</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">name:</span> <span class="pre">str</span> <span class="pre">or</span> <span class="pre">ObjectName)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></span></dt>
+<dd></dd></dl>
+
+<p>Associate the given object id with a name. An <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectID</span></code></a> can be associated with more
+than one names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object_id</strong> – ObjectID</p></li>
+<li><p><strong>name</strong> – str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.IPCClient.rpc_endpoint">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">rpc_endpoint</span></span><a class="headerlink" href="#vineyard.IPCClient.rpc_endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>The RPC endpoint of the connected vineyard server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.shallow_copy">
+<span class="sig-name descname"><span class="pre">shallow_copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.shallow_copy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">shallow_copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></dt>
+<dd></dd></dl>
+
+<p>Create a shallow copy of the given vineyard object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_id</strong> – ObjectID
+The vineyard object that is requested to be shallow-copied.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The object id of newly shallow-copied vineyard object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID">ObjectID</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.IPCClient.status">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#vineyard.IPCClient.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>The status the of connected vineyard server, returns a <a class="reference internal" href="#vineyard.InstanceStatus" title="vineyard.InstanceStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceStatus</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>InstanceStatus</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.IPCClient.sync_meta">
+<span class="sig-name descname"><span class="pre">sync_meta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.IPCClient.sync_meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sync_meta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Synchronize remote metadata to local immediately.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.IPCClient.version">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#vineyard.IPCClient.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>MAJOR.MINOR.PATCH.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>The version number string of connected vineyard server, in the format of semver</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.RPCClient">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">RPCClient</span></span><a class="headerlink" href="#vineyard.RPCClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>RPC client that connects to vineyard instance’s RPC endpoints.</p>
+<p>The RPC client can only access the metadata of objects, any access to the blob payload
+will trigger a <code class="code docutils literal notranslate"><span class="pre">RuntimeError</span></code> exception.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Close the client.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.RPCClient.connected">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">connected</span></span><a class="headerlink" href="#vineyard.RPCClient.connected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the client instance has been connected to the vineyard server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.create_metadata">
+<span class="sig-name descname"><span class="pre">create_metadata</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.create_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">create_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a></dt>
+<dd></dd></dl>
+
+<p>Create metadata in vineyardd.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>metadata</strong> – ObjectMeta
+The metadata that will be created on vineyardd.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result created metadata.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.delete" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">ObjectID</span> <span class="pre">or</span> <span class="pre">List[ObjectID]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">false</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">true</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Delete the specific vineyard object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object_id</strong> – ObjectID or list of ObjectID
+Objects that will be deleted. The <code class="code docutils literal notranslate"><span class="pre">object_id</span></code> can be a single <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectID</span></code></a>, or a list of
+<a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectID</span></code></a>.</p></li>
+<li><p><strong>force</strong> – bool
+Forcedly delete an object means the member will be recursively deleted even if the
+member object is also referred by others. The default value is <code class="code docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p><strong>deep</strong> – <p>bool
+Deeply delete an object means we will deleting the members recursively. The default
+value is <code class="code docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>Note that when deleting objects which have <em>direct</em> blob members, the
+processing on those blobs yields a “deep” behavior.</p>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_meta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">false</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">true</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Delete the specific vineyard object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_meta</strong> – The corresponding object meta to delete.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">false</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">true</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Delete the specific vineyard object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object</strong> – The corresponding object meta to delete.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.drop_name">
+<span class="sig-name descname"><span class="pre">drop_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.drop_name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">drop_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span> <span class="pre">or</span> <span class="pre">ObjectName</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Remove the association of the given name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – str
+The name that will be removed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.exists">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.exists" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">bool</span></dt>
+<dd></dd></dl>
+
+<p>Whether the given object exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_id</strong> – ObjectID
+The object id to check if exists.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="code docutils literal notranslate"><span class="pre">True</span></code> when the specified object exists.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolver</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get vineyard object as python value.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr_id</span> <span class="o">=</span> <span class="n">vineyard</span><span class="o">.</span><span class="n">ObjectID</span><span class="p">(</span><span class="s1">&#39;00002ec13bc81226&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">arr_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span>
+<span class="go">array([0, 1, 2, 3, 4, 5, 6, 7])</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client</strong> – IPCClient or RPCClient
+The vineyard client to use.</p></li>
+<li><p><strong>object_id</strong> – ObjectID
+The object id that will be obtained from vineyard.</p></li>
+<li><p><strong>resolver</strong> – When retrieving vineyard object, an optional <em>resolver</em> can be specified.
+If no resolver given, the default resolver context will be used.</p></li>
+<li><p><strong>kw</strong> – User-specific argument that will be passed to the builder.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A python object that return by the resolver, by resolving an vineyard object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.get_meta">
+<span class="sig-name descname"><span class="pre">get_meta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.get_meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a></dt>
+<dd></dd></dl>
+
+<p>Get object metadata from vineyard.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_id</strong> – ObjectID
+The object id to get.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ObjectMeta</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.get_metas">
+<span class="sig-name descname"><span class="pre">get_metas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.get_metas" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_metas(object_ids:</span> <span class="pre">List[ObjectID]</span> <span class="pre">-&gt;</span> <span class="pre">List[ObjectMeta]</span></span></dt>
+<dd></dd></dl>
+
+<p>Get metadatas of multiple objects from vineyard.</p>
+<dl class="simple">
+<dt>Paramters:</dt><dd><p>object_ids: List[ObjectID]</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List[ObjectMeta]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.get_name">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span> <span class="pre">or</span> <span class="pre">ObjectName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></dt>
+<dd></dd></dl>
+
+<p>Get the associated object id of the given name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – str
+The name that will be queried.</p></li>
+<li><p><strong>wait</strong> – bool
+Whether to wait util the name appears, if wait, the request will be blocked
+until the name been registered.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The associated object id with the name.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID">ObjectID</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.get_object">
+<span class="sig-name descname"><span class="pre">get_object</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.get_object" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a></dt>
+<dd></dd></dl>
+
+<p>Get object from vineyard.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_id</strong> – ObjectID
+The object id to get.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.get_objects">
+<span class="sig-name descname"><span class="pre">get_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.get_objects" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">get_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a><span class="p"><span class="pre">]</span></span></dt>
+<dd></dd></dl>
+
+<p>Get multiple objects from vineyard.</p>
+<dl class="simple">
+<dt>Paramters:</dt><dd><p>object_ids: List[ObjectID]</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List[Object]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.RPCClient.instance_id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">instance_id</span></span><a class="headerlink" href="#vineyard.RPCClient.instance_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The instance id of the connected vineyard server.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.RPCClient.ipc_socket">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">ipc_socket</span></span><a class="headerlink" href="#vineyard.RPCClient.ipc_socket" title="Permalink to this definition">¶</a></dt>
+<dd><p>The UNIX domain socket location of connected vineyard server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.list_objects">
+<span class="sig-name descname"><span class="pre">list_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.list_objects" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">list_objects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pattern</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regex</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a><span class="p"><span class="pre">]</span></span></dt>
+<dd></dd></dl>
+
+<p>List all objects in current vineyard server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pattern</strong> – str
+The pattern string that will be matched against the object’s typename.</p></li>
+<li><p><strong>regex</strong> – bool
+Whether the pattern is a regex expression, otherwise the pattern will be used as
+wildcard pattern.</p></li>
+<li><p><strong>limit</strong> – int
+The limit to list.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List[Object]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.RPCClient.meta">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">meta</span></span><a class="headerlink" href="#vineyard.RPCClient.meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>The metadata information of the vineyard server. The value is a  nested dict, the first-level
+key is the instance id, and the second-level key is the cluster metadata fields.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client</span><span class="o">.</span><span class="n">meta</span>
+<span class="go">{</span>
+<span class="go">    14: {</span>
+<span class="go">        &#39;hostid&#39;: &#39;54058007061210&#39;,</span>
+<span class="go">        &#39;hostname&#39;: &#39;127.0.0.1&#39;,</span>
+<span class="go">        &#39;timestamp&#39;: &#39;6882550126788354072&#39;</span>
+<span class="go">    },</span>
+<span class="go">    15: {</span>
+<span class="go">        &#39;hostid&#39;: &#39;48843417291806&#39;,</span>
+<span class="go">        &#39;hostname&#39;: &#39;127.0.0.1&#39;,</span>
+<span class="go">        &#39;timestamp&#39;: &#39;6882568290204737414&#39;</span>
+<span class="go">    }</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.persist">
+<span class="sig-name descname"><span class="pre">persist</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.persist" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">persist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Persist the object of the given object id. After persisting, the object will be visible by clients that
+connect to other vineyard server instances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_id</strong> – ObjectID
+The object that will be persist.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">persist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_meta</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectMeta" title="vineyard.ObjectMeta"><span class="pre">ObjectMeta</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Persist the given object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_meta</strong> – ObjectMeta
+The object that will be persist.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">persist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><span class="pre">Object</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Persist the given object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object</strong> – Object
+The object that will be persist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.put">
+<span class="sig-name descname"><span class="pre">put</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Put python value to vineyard.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr_id</span>
+<span class="go">00002ec13bc81226</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client</strong> – IPCClient
+The vineyard client to use.</p></li>
+<li><p><strong>value</strong> – The python value that will be put to vineyard. Supported python value types are
+decided by modules that registered to vineyard. By default, python value can be
+put to vineyard after serialized as a bytes buffer using pickle.</p></li>
+<li><p><strong>builder</strong> – When putting python value to vineyard, an optional <em>builder</em> can be specified to
+tell vineyard how to construct the corresponding vineyard <a class="reference internal" href="#vineyard.Object" title="vineyard.Object"><code class="xref py py-class docutils literal notranslate"><span class="pre">Object</span></code></a>. If not
+specified, the default builder context will be used to select a proper builder.</p></li>
+<li><p><strong>kw</strong> – User-specific argument that will be passed to the builder.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The result object id will be returned.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID">ObjectID</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.put_name">
+<span class="sig-name descname"><span class="pre">put_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.put_name" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">put_name(object:</span> <span class="pre">ObjectID</span> <span class="pre">or</span> <span class="pre">ObjectMeta</span> <span class="pre">or</span> <span class="pre">Object,</span></span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">name:</span> <span class="pre">str</span> <span class="pre">or</span> <span class="pre">ObjectName)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></span></dt>
+<dd></dd></dl>
+
+<p>Associate the given object id with a name. An <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><code class="xref py py-class docutils literal notranslate"><span class="pre">ObjectID</span></code></a> can be associated with more
+than one names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object_id</strong> – ObjectID</p></li>
+<li><p><strong>name</strong> – str</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.RPCClient.remote_instance_id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">remote_instance_id</span></span><a class="headerlink" href="#vineyard.RPCClient.remote_instance_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The instance id of the connected remote vineyard server.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.RPCClient.rpc_endpoint">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">rpc_endpoint</span></span><a class="headerlink" href="#vineyard.RPCClient.rpc_endpoint" title="Permalink to this definition">¶</a></dt>
+<dd><p>The RPC endpoint of the connected vineyard server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.shallow_copy">
+<span class="sig-name descname"><span class="pre">shallow_copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.shallow_copy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">shallow_copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID"><span class="pre">ObjectID</span></a></dt>
+<dd></dd></dl>
+
+<p>Create a shallow copy of the given vineyard object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>object_id</strong> – ObjectID
+The vineyard object that is requested to be shallow-copied.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The object id of newly shallow-copied vineyard object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#vineyard.ObjectID" title="vineyard.ObjectID">ObjectID</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.RPCClient.status">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#vineyard.RPCClient.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>The status the of connected vineyard server, returns a <a class="reference internal" href="#vineyard.InstanceStatus" title="vineyard.InstanceStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceStatus</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>InstanceStatus</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.RPCClient.sync_meta">
+<span class="sig-name descname"><span class="pre">sync_meta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.RPCClient.sync_meta" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sync_meta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">None</span></dt>
+<dd></dd></dl>
+
+<p>Synchronize remote metadata to local immediately.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.RPCClient.version">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#vineyard.RPCClient.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>MAJOR.MINOR.PATCH.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>The version number string of connected vineyard server, in the format of semver</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="state-of-server">
+<h2><a class="toc-backref" href="#id5">State of server</a><a class="headerlink" href="#state-of-server" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.InstanceStatus">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">InstanceStatus</span></span><a class="headerlink" href="#vineyard.InstanceStatus" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#vineyard.InstanceStatus" title="vineyard.InstanceStatus"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstanceStatus</span></code></a> represents the status of connected vineyard instance, including
+the instance identity, memory statistics and workloads on this instance.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">status</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">status</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>
+<span class="go">InstanceStatus:</span>
+<span class="go">    instance_id: 5</span>
+<span class="go">    deployment: local</span>
+<span class="go">    memory_usage: 360</span>
+<span class="go">    memory_limit: 268435456</span>
+<span class="go">    deferred_requests: 0</span>
+<span class="go">    ipc_connections: 1</span>
+<span class="go">    rpc_connections: 0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status</span><span class="o">.</span><span class="n">instance_id</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status</span><span class="o">.</span><span class="n">deployment</span>
+<span class="go">&#39;local&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status</span><span class="o">.</span><span class="n">memory_usage</span>
+<span class="go">360</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status</span><span class="o">.</span><span class="n">memory_limit</span>
+<span class="go">268435456</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status</span><span class="o">.</span><span class="n">deferred_requests</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status</span><span class="o">.</span><span class="n">ipc_connections</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">status</span><span class="o">.</span><span class="n">rpc_connections</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.InstanceStatus.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.InstanceStatus.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.InstanceStatus.deferred_requests">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">deferred_requests</span></span><a class="headerlink" href="#vineyard.InstanceStatus.deferred_requests" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report number of waiting requests of current vineyardd instance.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.InstanceStatus.deployment">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">deployment</span></span><a class="headerlink" href="#vineyard.InstanceStatus.deployment" title="Permalink to this definition">¶</a></dt>
+<dd><p>The deployment mode of the connected vineyardd cluster, can be <code class="code docutils literal notranslate"><span class="pre">&quot;local&quot;</span></code> and
+<code class="code docutils literal notranslate"><span class="pre">&quot;distributed&quot;</span></code>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.InstanceStatus.instance_id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">instance_id</span></span><a class="headerlink" href="#vineyard.InstanceStatus.instance_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the instance id of vineyardd that the client is connected to.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.InstanceStatus.ipc_connections">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">ipc_connections</span></span><a class="headerlink" href="#vineyard.InstanceStatus.ipc_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report number of alive IPC connections on the current vineyardd instance.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.InstanceStatus.memory_limit">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">memory_limit</span></span><a class="headerlink" href="#vineyard.InstanceStatus.memory_limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report memory limit (in bytes) of current vineyardd instance.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.InstanceStatus.memory_usage">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">memory_usage</span></span><a class="headerlink" href="#vineyard.InstanceStatus.memory_usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report memory usage (in bytes) of current vineyardd instance.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.InstanceStatus.rpc_connections">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">rpc_connections</span></span><a class="headerlink" href="#vineyard.InstanceStatus.rpc_connections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Report number of alive RPC connections on the current vineyardd instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="primitives">
+<h2><a class="toc-backref" href="#id6">Primitives</a><a class="headerlink" href="#primitives" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.Blob">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">Blob</span></span><a class="headerlink" href="#vineyard.Blob" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#vineyard.Blob" title="vineyard.Blob"><code class="xref py py-class docutils literal notranslate"><span class="pre">Blob</span></code></a> in vineyard is a consecutive readonly shared memory.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Blob.address">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#vineyard.Blob.address" title="Permalink to this definition">¶</a></dt>
+<dd><p>The memory address value of this blob.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Blob.buffer">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">buffer</span></span><a class="headerlink" href="#vineyard.Blob.buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The readonly buffer hebind this blob. The result buffer has type <code class="code docutils literal notranslate"><span class="pre">pyarrow::Buffer</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.Blob.empty">
+<em class="property"><span class="pre">static</span> </em><span class="sig-name descname"><span class="pre">empty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.Blob.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the blob is an empty blob, i.e., the size of this blob is 0.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.Blob.size">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#vineyard.Blob.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size of the blob.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.BlobBuilder">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.</span></span><span class="sig-name descname"><span class="pre">BlobBuilder</span></span><a class="headerlink" href="#vineyard.BlobBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#vineyard.BlobBuilder" title="vineyard.BlobBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">BlobBuilder</span></code></a> is the builder for creating a finally immutable blob in vineyard server.</p>
+<p>A <a class="reference internal" href="#vineyard.BlobBuilder" title="vineyard.BlobBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">BlobBuilder</span></code></a> can only be explicitly created using the <a class="reference internal" href="#vineyard.IPCClient.create_blob" title="vineyard.IPCClient.create_blob"><code class="xref py py-meth docutils literal notranslate"><span class="pre">IPCClient.create_blob()</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>IPCClient.create_blob
+IPCClient.create_empty_blob</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.BlobBuilder.abort">
+<span class="sig-name descname"><span class="pre">abort</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.BlobBuilder.abort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abort the blob builder if it is not sealed yet.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.BlobBuilder.address">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">address</span></span><a class="headerlink" href="#vineyard.BlobBuilder.address" title="Permalink to this definition">¶</a></dt>
+<dd><p>The memory address value of this blob builder.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.BlobBuilder.buffer">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">buffer</span></span><a class="headerlink" href="#vineyard.BlobBuilder.buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The writeable buffer hebind this blob builder. The result buffer has type <code class="code docutils literal notranslate"><span class="pre">pyarrow::Buffer</span></code>,
+and it is a mutable one.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.BlobBuilder.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vineyard.BlobBuilder.copy" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ptr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span></dt>
+<dd></dd></dl>
+
+<p>Copy the given address to the given offset.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.BlobBuilder.id">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#vineyard.BlobBuilder.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>ObjectID of this blob builder.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.BlobBuilder.size">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#vineyard.BlobBuilder.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size of this blob builder.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="shared-memory">
+<span id="id1"></span><h2><a class="toc-backref" href="#id7">Shared Memory</a><a class="headerlink" href="#shared-memory" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.shared_memory.SharedMemory">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.shared_memory.</span></span><span class="sig-name descname"><span class="pre">SharedMemory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vineyard_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vineyard/shared_memory/shared_memory.html#SharedMemory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vineyard.shared_memory.SharedMemory" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py property">
+<dt class="sig sig-object py" id="vineyard.shared_memory.SharedMemory.buf">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">buf</span></span><a class="headerlink" href="#vineyard.shared_memory.SharedMemory.buf" title="Permalink to this definition">¶</a></dt>
+<dd><p>A memoryview of contents of the shared memory block.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.shared_memory.SharedMemory.freeze">
+<span class="sig-name descname"><span class="pre">freeze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vineyard/shared_memory/shared_memory.html#SharedMemory.freeze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vineyard.shared_memory.SharedMemory.freeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seal the shared memory to make it visible for other processes.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.shared_memory.SharedMemory.name">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#vineyard.shared_memory.SharedMemory.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unique name that identifies the shared memory block.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="vineyard.shared_memory.SharedMemory.size">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#vineyard.shared_memory.SharedMemory.size" title="Permalink to this definition">¶</a></dt>
+<dd><p>Size in bytes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.shared_memory.SharedMemory.unlink">
+<span class="sig-name descname"><span class="pre">unlink</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vineyard/shared_memory/shared_memory.html#SharedMemory.unlink"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vineyard.shared_memory.SharedMemory.unlink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Requests that the underlying shared memory block be destroyed.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="vineyard.shared_memory.ShareableList">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">vineyard.shared_memory.</span></span><span class="sig-name descname"><span class="pre">ShareableList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vineyard_client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vineyard/shared_memory/shared_memory.html#ShareableList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vineyard.shared_memory.ShareableList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pattern for a mutable list-like object shareable via a shared
+memory block.  It differs from the built-in list type in that these
+lists can not change their overall length (i.e. no append, insert,
+etc.)</p>
+<p>Because values are packed into a memoryview as bytes, the struct
+packing format for any storable value must require no more than 8
+characters to describe its format.</p>
+<p>The ShareableList in vineyard differs slightly with its equivalent
+in the multiprocessing.shared_memory.ShareableList, as it becomes
+immutable after obtaining from the vineyard backend.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiprocessing.shared_memory.ShareableList</span></code></p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="vineyard.shared_memory.ShareableList.freeze">
+<span class="sig-name descname"><span class="pre">freeze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vineyard/shared_memory/shared_memory.html#ShareableList.freeze"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vineyard.shared_memory.ShareableList.freeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make the shareable list immutable and visible for other vineyard clients.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="deployment">
+<h2><a class="toc-backref" href="#id8">Deployment</a><a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="vineyard.deploy.local.start_vineyardd">
+<span class="sig-prename descclassname"><span class="pre">vineyard.deploy.local.</span></span><span class="sig-name descname"><span class="pre">start_vineyardd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">etcd_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vineyardd_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'256M'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">socket</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rpc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rpc_socket_port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vineyard/deploy/local.html#start_vineyardd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vineyard.deploy.local.start_vineyardd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a local vineyard cluster.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>etcd_endpoint</strong> – str
+Launching vineyard using specified etcd endpoints. If not specified, vineyard
+will launch its own etcd instance.</p></li>
+<li><p><strong>vineyardd_path</strong> – str
+Location of vineyard server program. If not specified, vineyard will use its
+own bundled vineyardd binary.</p></li>
+<li><p><strong>size</strong> – <p>int
+The memory size limit for vineyard’s shared memory. The memory size can be a plain
+integer or as a fixed-point number using one of these suffixes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki.</p>
+<p>For example, the following represent roughly the same value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">128974848</span><span class="p">,</span> <span class="mi">129</span><span class="n">k</span><span class="p">,</span> <span class="mi">129</span><span class="n">M</span><span class="p">,</span> <span class="mi">123</span><span class="n">Mi</span><span class="p">,</span> <span class="mi">1</span><span class="n">G</span><span class="p">,</span> <span class="mi">10</span><span class="n">Gi</span><span class="p">,</span> <span class="o">...</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>socket</strong> – <p>str
+The UNIX domain socket socket path that vineyard server will listen on.
+Default is None.</p>
+<p>When the socket parameter is None, a random path under temporary directory will be
+generated and used.</p>
+</p></li>
+<li><p><strong>rpc_socket_port</strong> – int
+The port that vineyard will use to privode RPC service.</p></li>
+<li><p><strong>debug</strong> – bool
+Whether print debug logs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="vineyard.deploy.distributed.start_vineyardd">
+<span class="sig-prename descclassname"><span class="pre">vineyard.deploy.distributed.</span></span><span class="sig-name descname"><span class="pre">start_vineyardd</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hosts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etcd_endpoints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vineyardd_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'256M'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">socket</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/var/run/vineyard.sock'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rpc_socket_port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">9600</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vineyard/deploy/distributed.html#start_vineyardd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vineyard.deploy.distributed.start_vineyardd" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch a local vineyard cluster in a distributed fashion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>hosts</strong> – list of str
+A list of machines to launch vineyard server.</p></li>
+<li><p><strong>etcd_endpoint</strong> – str
+Launching vineyard using specified etcd endpoints. If not specified, vineyard
+will launch its own etcd instance.</p></li>
+<li><p><strong>vineyardd_path</strong> – str
+Location of vineyard server program. If not specified, vineyard will use its
+own bundled vineyardd binary.</p></li>
+<li><p><strong>size</strong> – <p>int
+The memory size limit for vineyard’s shared memory. The memory size can be a plain
+integer or as a fixed-point number using one of these suffixes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki.</p>
+<p>For example, the following represent roughly the same value:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">128974848</span><span class="p">,</span> <span class="mi">129</span><span class="n">k</span><span class="p">,</span> <span class="mi">129</span><span class="n">M</span><span class="p">,</span> <span class="mi">123</span><span class="n">Mi</span><span class="p">,</span> <span class="mi">1</span><span class="n">G</span><span class="p">,</span> <span class="mi">10</span><span class="n">Gi</span><span class="p">,</span> <span class="o">...</span>
+</pre></div>
+</div>
+</p></li>
+<li><p><strong>socket</strong> – str
+The UNIX domain socket socket path that vineyard server will listen on.</p></li>
+<li><p><strong>rpc_socket_port</strong> – int
+The port that vineyard will use to privode RPC service.</p></li>
+<li><p><strong>debug</strong> – bool
+Whether print debug logs.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="io-facilities">
+<h2><a class="toc-backref" href="#id9">IO Facilities</a><a class="headerlink" href="#io-facilities" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="vineyard.io.open">
+<span class="sig-prename descclassname"><span class="pre">vineyard.io.</span></span><span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'r'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vineyard/io/stream.html#open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vineyard.io.open" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open a path as a reader or writer, depends on the parameter <code class="code docutils literal notranslate"><span class="pre">mode</span></code>. If <code class="code docutils literal notranslate"><span class="pre">mode</span></code>
+is <code class="code docutils literal notranslate"><span class="pre">r</span></code>, it will open a stream for read, and open a stream for write when <code class="code docutils literal notranslate"><span class="pre">mode</span></code>
+is <code class="code docutils literal notranslate"><span class="pre">w</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to open.</p></li>
+<li><p><strong>mode</strong> (<em>char</em>) – Mode about how to open the path, <code class="code docutils literal notranslate"><span class="pre">r</span></code> is for read and <code class="code docutils literal notranslate"><span class="pre">w</span></code> for write.</p></li>
+<li><p><strong>vineyard_ipc_socket</strong> (<em>str</em>) – Vineyard’s IPC socket location.</p></li>
+<li><p><strong>vineyard_endpoint</strong> (<em>str</em>) – Vineyard’s RPC socket address.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#vineyard.io.read" title="vineyard.io.read"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vineyard.io.read</span></code></a>, <a class="reference internal" href="#vineyard.io.write" title="vineyard.io.write"><code class="xref py py-obj docutils literal notranslate"><span class="pre">vineyard.io.write</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="vineyard.io.read">
+<span class="sig-prename descclassname"><span class="pre">vineyard.io.</span></span><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vineyard/io/stream.html#read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vineyard.io.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Open a path and read it as a single stream.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to read, the last reader registered for the scheme of the path will be used.</p></li>
+<li><p><strong>vineyard_ipc_socket</strong> (<em>str</em>) – The local or remote vineyard’s IPC socket location that the remote readers will
+use to establish connections with the vineyard server.</p></li>
+<li><p><strong>vineyard_endpoint</strong> (<em>str</em><em>, </em><em>optional</em>) – An optional address of vineyard’s RPC socket, which will be used for retrieving server’s
+information on the client side. If not provided, the <cite>vineyard_ipc_socket</cite> will be used,
+or it will tries to discovery vineyard’s IPC or RPC endpoints from environment variables.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="vineyard.io.write">
+<span class="sig-prename descclassname"><span class="pre">vineyard.io.</span></span><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/vineyard/io/stream.html#write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#vineyard.io.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the stream to a given path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – Path to write, the last writer registered for the scheme of the path will be used.</p></li>
+<li><p><strong>stream</strong> (<em>vineyard stream</em>) – Stream that produces the data to write.</p></li>
+<li><p><strong>vineyard_ipc_socket</strong> (<em>str</em>) – The local or remote vineyard’s IPC socket location that the remote readers will
+use to establish connections with the vineyard server.</p></li>
+<li><p><strong>vineyard_endpoint</strong> (<em>str</em><em>, </em><em>optional</em>) – An optional address of vineyard’s RPC socket, which will be used for retrieving server’s
+information on the client side. If not provided, the <cite>vineyard_ipc_socket</cite> will be used,
+or it will tries to discovery vineyard’s IPC or RPC endpoints from environment variables.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <a href="cpp_api.html" class="btn btn-neutral float-left" title="C++ API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <a href="faq.html" class="btn btn-neutral float-right" title="Frequently Asked Questions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+
+      <p>
+        Vineyard is a <a href="https://www.cncf.io/sandbox-projects/">CNCF sandbox project</a>.
+      </p>
+      <img src="https://v6d.io/_static/cncf-color.svg" alt="CLOUD NATIVE COMPUTING FOUNDATION" width="40%"/>
+      <p>
+        The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation,
+        please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage page</a>.
+      </p>
+
+      <hr/>&#169; Copyright 2019-2021, The Vineyard Contributors.
+
+      <p></p>
+    </div>
+  
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+      <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+     
+  
+  </footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

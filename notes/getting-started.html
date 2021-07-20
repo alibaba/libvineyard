@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Getting Started &mdash; vineyard  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/vineyard.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Diving into vineyard" href="divein.html" />
+    <link rel="prev" title="Installation" href="install.html" />
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CYXWKLJB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CYXWKLJB8');
+</script>
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> vineyard
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#starting-vineyard-server">Starting vineyard server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-vineyard">Connecting to vineyard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-and-putting-python-object">Getting and putting Python object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-dataframe">Creating a dataframe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shared-memory">Shared Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-streams">Using streams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#open-a-local-file-as-a-dataframe-stream">Open a local file as a dataframe stream</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#open-a-file-in-nfs-parallelized-as-a-parallel-stream">Open a file in NFS parallelized as a parallel stream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="divein.html">Diving into vineyard</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api.html">Python API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to vineyard</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vineyard</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Getting Started</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/notes/getting-started.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="starting-vineyard-server">
+<h2>Starting vineyard server<a class="headerlink" href="#starting-vineyard-server" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> vineyardd
+</pre></div>
+</div>
+<p>A vineyard daemon server will be launched on the underlying machine with default
+settings. The default <code class="docutils literal notranslate"><span class="pre">socket</span></code> is <code class="docutils literal notranslate"><span class="pre">/var/run/vineyard.sock</span></code>, and it is
+listened by the server for ipc connections.</p>
+<p>Note that a vineyard daemon server is a vineyard instance in a vineyard cluster.
+Thus, to start a vineyard cluster, we can simply start <code class="docutils literal notranslate"><span class="pre">vineyardd</span></code> over all the
+machines in the cluster, and make sure these vineyard instances can register to
+the same <code class="docutils literal notranslate"><span class="pre">etcd_endpoint</span></code>. The default value of <code class="docutils literal notranslate"><span class="pre">etcd_endpoint</span></code> is
+<code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:2379</span></code>, and <code class="docutils literal notranslate"><span class="pre">vineyard</span></code> will launch the <code class="docutils literal notranslate"><span class="pre">etcd_endpoint</span></code>
+in case the etcd servers are not started on the cluster.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">vineyardd</span> <span class="pre">--help</span></code> for other parameter settings.</p>
+</div>
+<div class="section" id="connecting-to-vineyard">
+<h2>Connecting to vineyard<a class="headerlink" href="#connecting-to-vineyard" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard deamon serves clients via UNIX domain socket:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">vineyard</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">client</span> <span class="o">=</span> <span class="n">vineyard</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;/var/run/vineyard.sock&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here we established a vineyard client connected to the vineyardd instance
+via the IPC socket <code class="docutils literal notranslate"><span class="pre">/var/run/vineyard.sock</span></code>.</p>
+</div>
+<div class="section" id="getting-and-putting-python-object">
+<h2>Getting and putting Python object<a class="headerlink" href="#getting-and-putting-python-object" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">vineyard.data.tensor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">arr_id</span>
+<span class="go">00002ec13bc81226</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shared_arr</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">arr_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shared_arr</span>
+<span class="go">array([0, 1, 2, 3, 4, 5, 6, 7])</span>
+</pre></div>
+</div>
+<p>We first use <code class="code docutils literal notranslate"><span class="pre">client.put()</span></code> to build the vineyard object from the local variable <code class="docutils literal notranslate"><span class="pre">arr</span></code>,
+which returns the <code class="docutils literal notranslate"><span class="pre">object_id</span></code> that is the unique id in vineyard to represent the object.</p>
+<p>Then given the <code class="docutils literal notranslate"><span class="pre">object_id</span></code>, we can obtain a shared-memory object from vineyard
+with <code class="code docutils literal notranslate"><span class="pre">client.get()</span></code>. Note that <code class="code docutils literal notranslate"><span class="pre">shared_arr</span></code> doesn’t allocate memory in the
+client process; instead, it shares the memory from the vineyard server.</p>
+</div>
+<div class="section" id="creating-a-dataframe">
+<h2>Creating a dataframe<a class="headerlink" href="#creating-a-dataframe" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">vineyard.data.dataframe</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;u&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>                   <span class="s1">&#39;v&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+<span class="gp">&gt;&gt;&gt; </span>                   <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">3.2</span><span class="p">,</span> <span class="mf">4.7</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shared_object</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">df_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shared_object</span><span class="o">.</span><span class="n">typename</span>
+<span class="go">vineyard::DataFrame</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shared_df</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">df_id</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shared_df</span>
+<span class="go">u  v  weight</span>
+<span class="go">0  0  1     1.5</span>
+<span class="go">1  0  2     3.2</span>
+<span class="go">2  1  3     4.7</span>
+<span class="go">3  2  3     0.3</span>
+<span class="go">4  2  4     0.8</span>
+<span class="go">5  3  4     2.5</span>
+</pre></div>
+</div>
+<p>We first build the vineyard dataframe object from pandas dataframe variable <code class="docutils literal notranslate"><span class="pre">df</span></code>,
+then to further understand the <code class="docutils literal notranslate"><span class="pre">client.get()</span></code> method, we use <code class="docutils literal notranslate"><span class="pre">client.get_object()</span></code>
+to get the vineyard object, and check its <code class="docutils literal notranslate"><span class="pre">typename</span></code>.</p>
+<p>Actually, <code class="docutils literal notranslate"><span class="pre">client.get()</span></code> works in two steps, it first gets the vineyard object
+from vineyardd via <code class="docutils literal notranslate"><span class="pre">client.get_object()</span></code>, and then resolves the vineyard object
+based on the registered resolver.</p>
+<p>In this case, when we <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">vineyard.dataframe</span></code>,
+a resolver that can resolve a vineyard dataframe object to a pandas dataframe is
+registered to the resolver factory under the vineyard type <code class="docutils literal notranslate"><span class="pre">vineyard::DataFrame</span></code>,
+so that the client can automatically resolve the vineyard dataframe object.
+To further understand the registration design
+in vineyard, see <a class="reference internal" href="divein.html#divein-driver-label"><span class="std std-ref">Driver</span></a>.</p>
+</div>
+<div class="section" id="shared-memory">
+<h2>Shared Memory<a class="headerlink" href="#shared-memory" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard supports shared memory interface of <code class="xref py py-class docutils literal notranslate"><span class="pre">SharedMemory</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">ShareableList</span></code>
+like things in <a class="reference external" href="https://docs.python.org/3/library/multiprocessing.shared_memory.html">multiprocessing.shared_memory</a>.</p>
+<p>The shared memory interface can be used in the following way:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">vineyard</span> <span class="kn">import</span> <span class="n">shared_memory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span> <span class="o">=</span> <span class="n">shared_memory</span><span class="o">.</span><span class="n">ShareableList</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="p">[</span><span class="sa">b</span><span class="s2">&quot;a&quot;</span><span class="p">,</span> <span class="s2">&quot;bb&quot;</span><span class="p">,</span> <span class="mi">1234</span><span class="p">,</span> <span class="mf">56.78</span><span class="p">,</span> <span class="bp">True</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span>
+<span class="go">ShareableList([b&#39;a&#39;, &#39;bb&#39;, 1234, 56.78, True], name=&#39;o8000000119aa10c0&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value</span>
+<span class="go">ShareableList([b&#39;a&#39;, &#39;bb&#39;, 1234, 56.78, False], name=&#39;o8000000119aa10c0&#39;)</span>
+</pre></div>
+</div>
+<p>Note that the semantic of the vineyard’s <code class="code docutils literal notranslate"><span class="pre">shared_memory</span></code> is slightly different
+with the <code class="code docutils literal notranslate"><span class="pre">shared_memory</span></code> in python’s multiprocessing module. Shared memory in
+vineyard cannot be mutable after been visible to other clients.</p>
+<p>We have added a <code class="code docutils literal notranslate"><span class="pre">freeze</span></code> method to make such transformation happen:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After being freezed, the shared memory (aka. the <code class="code docutils literal notranslate"><span class="pre">ShareableList</span></code> in this case)
+is available for other clients:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">value1</span> <span class="o">=</span> <span class="n">shared_memory</span><span class="o">.</span><span class="n">ShareableList</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">value</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">value1</span>
+<span class="go">ShareableList([b&#39;a&#39;, &#39;bb&#39;, 1234, 56.78, False], name=&#39;o8000000119aa10c0&#39;)</span>
+</pre></div>
+</div>
+<p>For more details, see <a class="reference internal" href="python_api.html#shared-memory"><span class="std std-ref">Shared Memory</span></a>.</p>
+</div>
+<div class="section" id="using-streams">
+<h2>Using streams<a class="headerlink" href="#using-streams" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard supports streaming to facilitate big data pipelining.</p>
+<div class="section" id="open-a-local-file-as-a-dataframe-stream">
+<h3>Open a local file as a dataframe stream<a class="headerlink" href="#open-a-local-file-as-a-dataframe-stream" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">vineyard.io.stream</span> <span class="kn">import</span> <span class="nb">open</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stream</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;file://twitter.e&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stream</span><span class="o">.</span><span class="n">typename</span>
+<span class="go">vineyard::DataFrameStream</span>
+</pre></div>
+</div>
+<p>In practice, the file may be stored in an NFS, and we want to read the file in
+parallel to further speed up the IO process.</p>
+</div>
+<div class="section" id="open-a-file-in-nfs-parallelized-as-a-parallel-stream">
+<h3>Open a file in NFS parallelized as a parallel stream<a class="headerlink" href="#open-a-file-in-nfs-parallelized-as-a-parallel-stream" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">stream</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;file://twitter.e&#39;</span><span class="p">,</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stream</span><span class="o">.</span><span class="n">typename</span>
+<span class="go">vineyard::ParallelStream</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stream</span><span class="o">.</span><span class="n">get_stream_num</span><span class="p">()</span>
+<span class="go">16</span>
+</pre></div>
+</div>
+<p>To further understand the implementation of the driver <code class="docutils literal notranslate"><span class="pre">open</span></code>, and the underlying
+registration mechanism for drivers in vineyard, see <a class="reference internal" href="divein.html#divein-driver-label"><span class="std std-ref">Driver</span></a>.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <a href="install.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <a href="divein.html" class="btn btn-neutral float-right" title="Diving into vineyard" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+
+      <p>
+        Vineyard is a <a href="https://www.cncf.io/sandbox-projects/">CNCF sandbox project</a>.
+      </p>
+      <img src="https://v6d.io/_static/cncf-color.svg" alt="CLOUD NATIVE COMPUTING FOUNDATION" width="40%"/>
+      <p>
+        The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation,
+        please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage page</a>.
+      </p>
+
+      <hr/>&#169; Copyright 2019-2021, The Vineyard Contributors.
+
+      <p></p>
+    </div>
+  
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+      <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+     
+  
+  </footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

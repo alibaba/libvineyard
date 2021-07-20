@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>vineyard.deploy.distributed &mdash; vineyard  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/vineyard.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CYXWKLJB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CYXWKLJB8');
+</script>
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> vineyard
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/divein.html">Diving into vineyard</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/python_api.html">Python API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/contributing.html">Contributing to vineyard</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">vineyard</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>vineyard.deploy.distributed</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for vineyard.deploy.distributed</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright 2020-2021 Alibaba Group Holding Limited.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1">#</span>
+
+<span class="kn">import</span> <span class="nn">contextlib</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">pkg_resources</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="k">import</span> <span class="n">start_etcd</span><span class="p">,</span> <span class="n">ssh_base_cmd</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;vineyard&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="start_vineyardd"><a class="viewcode-back" href="../../../notes/python_api.html#vineyard.deploy.distributed.start_vineyardd">[docs]</a><span class="nd">@contextlib</span><span class="o">.</span><span class="n">contextmanager</span>
+<span class="k">def</span> <span class="nf">start_vineyardd</span><span class="p">(</span><span class="n">hosts</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">etcd_endpoints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">vineyardd_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                    <span class="n">size</span><span class="o">=</span><span class="s1">&#39;256M&#39;</span><span class="p">,</span>
+                    <span class="n">socket</span><span class="o">=</span><span class="s1">&#39;/var/run/vineyard.sock&#39;</span><span class="p">,</span>
+                    <span class="n">rpc_socket_port</span><span class="o">=</span><span class="mi">9600</span><span class="p">,</span>
+                    <span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39; Launch a local vineyard cluster in a distributed fashion.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        hosts: list of str</span>
+<span class="sd">            A list of machines to launch vineyard server.</span>
+<span class="sd">        etcd_endpoint: str</span>
+<span class="sd">            Launching vineyard using specified etcd endpoints. If not specified, vineyard</span>
+<span class="sd">            will launch its own etcd instance.</span>
+<span class="sd">        vineyardd_path: str</span>
+<span class="sd">            Location of vineyard server program. If not specified, vineyard will use its</span>
+<span class="sd">            own bundled vineyardd binary.</span>
+<span class="sd">        size: int</span>
+<span class="sd">            The memory size limit for vineyard&#39;s shared memory. The memory size can be a plain</span>
+<span class="sd">            integer or as a fixed-point number using one of these suffixes:</span>
+
+<span class="sd">            .. code::</span>
+
+<span class="sd">                E, P, T, G, M, K.</span>
+
+<span class="sd">            You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki.</span>
+
+<span class="sd">            For example, the following represent roughly the same value:</span>
+
+<span class="sd">            .. code::</span>
+
+<span class="sd">                128974848, 129k, 129M, 123Mi, 1G, 10Gi, ...</span>
+<span class="sd">        socket: str</span>
+<span class="sd">            The UNIX domain socket socket path that vineyard server will listen on.</span>
+<span class="sd">        rpc_socket_port: int</span>
+<span class="sd">            The port that vineyard will use to privode RPC service.</span>
+<span class="sd">        debug: bool</span>
+<span class="sd">            Whether print debug logs.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">vineyardd_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">vineyardd_path</span> <span class="o">=</span> <span class="n">pkg_resources</span><span class="o">.</span><span class="n">resource_filename</span><span class="p">(</span><span class="s1">&#39;vineyard&#39;</span><span class="p">,</span> <span class="s1">&#39;vineyardd&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">hosts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">hosts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;localhost&#39;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">etcd_endpoints</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">etcd_ctx</span> <span class="o">=</span> <span class="n">start_etcd</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">hosts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">etcd_proc</span><span class="p">,</span> <span class="n">etcd_endpoints</span> <span class="o">=</span> <span class="n">etcd_ctx</span><span class="o">.</span><span class="fm">__enter__</span><span class="p">()</span>  <span class="c1"># pylint: disable=no-member</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">etcd_ctx</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">env</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">debug</span><span class="p">:</span>
+        <span class="n">env</span><span class="p">[</span><span class="s1">&#39;GLOG_v&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+
+    <span class="c1"># yapf: disable</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">vineyardd_path</span><span class="p">,</span>
+        <span class="s1">&#39;--deployment&#39;</span><span class="p">,</span> <span class="s1">&#39;distributed&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;--size&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">size</span><span class="p">),</span>
+        <span class="s1">&#39;--socket&#39;</span><span class="p">,</span> <span class="n">socket</span><span class="p">,</span>
+        <span class="s1">&#39;--rpc_socket_port&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">rpc_socket_port</span><span class="p">),</span>
+        <span class="s1">&#39;--etcd_endpoint&#39;</span><span class="p">,</span> <span class="n">etcd_endpoints</span>
+    <span class="p">]</span>
+    <span class="c1"># yapf: enable</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">procs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">host</span> <span class="ow">in</span> <span class="n">hosts</span><span class="p">:</span>
+            <span class="n">proc</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">ssh_base_cmd</span><span class="p">(</span><span class="n">host</span><span class="p">)</span> <span class="o">+</span> <span class="n">command</span><span class="p">,</span>
+                                    <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span>
+                                    <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span>
+                                    <span class="n">stderr</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">__stderr__</span><span class="p">,</span>
+                                    <span class="n">universal_newlines</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                    <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+            <span class="n">procs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">proc</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">proc</span> <span class="ow">in</span> <span class="n">procs</span><span class="p">:</span>
+            <span class="n">rc</span> <span class="o">=</span> <span class="n">proc</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">rc</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">err</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">indent</span><span class="p">(</span><span class="n">proc</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;vineyardd exited unexpectedly with code </span><span class="si">%d</span><span class="s1">: error is:</span><span class="se">\n</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">rc</span><span class="p">,</span> <span class="n">err</span><span class="p">))</span>
+        <span class="k">yield</span> <span class="n">procs</span><span class="p">,</span> <span class="n">socket</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Distributed vineyardd being killed&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">proc</span> <span class="ow">in</span> <span class="n">procs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">proc</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;killing the vineyardd&#39;</span><span class="p">)</span>
+                <span class="n">proc</span><span class="o">.</span><span class="n">kill</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">etcd_ctx</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">etcd_ctx</span><span class="o">.</span><span class="fm">__exit__</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># pylint: disable=no-member</span></div>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;start_vineyardd&#39;</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+
+      <p>
+        Vineyard is a <a href="https://www.cncf.io/sandbox-projects/">CNCF sandbox project</a>.
+      </p>
+      <img src="https://v6d.io/_static/cncf-color.svg" alt="CLOUD NATIVE COMPUTING FOUNDATION" width="40%"/>
+      <p>
+        The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation,
+        please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage page</a>.
+      </p>
+
+      <hr/>&#169; Copyright 2019-2021, The Vineyard Contributors.
+
+      <p></p>
+    </div>
+  
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+      <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+     
+  
+  </footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

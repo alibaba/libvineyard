@@ -1,0 +1,677 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Diving into vineyard &mdash; vineyard  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/vineyard.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="C++ API Reference" href="cpp_api.html" />
+    <link rel="prev" title="Getting Started" href="getting-started.html" />
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CYXWKLJB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CYXWKLJB8');
+</script>
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> vineyard
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Diving into vineyard</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vineyard-object-design">Vineyard Object Design</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#distributed-object">Distributed Object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#composable-design">Composable Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extensible-design">Extensible Design</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#vineyard-object">Vineyard object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#builder-and-resolver">Builder and resolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#driver">Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#features-and-limitations">Features and Limitations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#targeted-design-for-distributed-data-sharing-in-big-data-tasks">Targeted design for distributed data sharing in big data tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#out-of-box-high-level-data-abstraction">Out-of-box high-level data abstraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zero-cost-in-memory-data-sharing">Zero-cost in-memory data sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convinient-data-integration">Convinient data integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-orchestration-in-a-python-notebook">Data orchestration in a python notebook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#not-for-mutable-objects">NOT for mutable objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#not-for-instant-remote-data-partition-accessing">NOT for instant remote data partition accessing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api.html">Python API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to vineyard</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vineyard</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Diving into vineyard</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/notes/divein.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="diving-into-vineyard">
+<h1>Diving into vineyard<a class="headerlink" href="#diving-into-vineyard" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>Existing big data practice usually adopts distributed databases or file systems as the
+intermediate storage to share <strong>immutable</strong> distributed data between heterogeneous
+computation systems that are involved in a big data task. This
+brings two significant overheads:</p>
+<ol class="arabic simple">
+<li><p>The structural data is transformed from/to the
+external data storage format (e.g., tables in relational databases, files in HDFS)
+back and forth in the beginning/end of each computation step, meanwhile, the
+structure and operations of the data are dismissed.</p></li>
+<li><p>Saving/Loading the data to/from the external storage
+requires lots of memory-copies and disk-IO costs, which becomes
+the bottleneck of the entire process in more and more cases as the efficiency
+of the computation systems are growing rapidly these years.</p></li>
+</ol>
+<p>In addition, the lack of managing the data uniformly through the big data task obstructs
+the application of modern techniques such as data monitoring, data-aware
+optimization, and fault-tolerance, thus, further decreases the productive efficiency.</p>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>To address this issue, vineyard provides:</p>
+<ol class="arabic">
+<li><p><strong>In-memory</strong> distributed data sharing in a <strong>zero-copy</strong> fashion to avoid
+introducing extra I/O costs by exploiting a shared memory manager derived from plasma.</p>
+<p>In general, vineyard servers are
+launched as daemons in every machine of the underlying cluster to make up
+a <strong>vineyard cluster</strong>,
+and each vineyard instance will allocate a shared memory pool to store
+the corresponding partition of the distributed data,
+and the meta data of the distributed data will be shared across
+the vineyard cluster via the backend key-value store, e.g., etcd or zookeeper.</p>
+<img alt="Vineyard deployment" src="../_images/vineyard_deployment.jpg" />
+<p>For example, a distributed tensor is stored in the vineyard cluster as illustrated above.
+Each partition is stored in the corresponding vineyard instance,
+while the meta data, e.g., the shape of the tensor is stored in the backend
+key-value server of vineyard, i.e., the etcd server.</p>
+<p>To reuse the distributed tensor in parallel processing, each process will first
+establish a vineyard client connecting to the corresponding vineyard instance on the
+same machine, and then get the meta data of the distributed tensor. Finally based on
+the meta data, each process can get the corresponding partition of the distributed tensor
+from the vineyard instance via memory mapping in a <strong>zero-copy</strong> fashion,
+and start to use the data for computation.</p>
+</li>
+<li><p>Built-in <strong>out-of-box high-level</strong> abstraction to share the distributed
+data with complex structures (e.g., distributed graphs)
+with nearly zero extra development cost, while the transformation costs are eliminated.</p>
+<p>For example, a distributed graph is composed of fragments that are stored distributedly
+over the vineyard cluster, and each fragment consists of vertices, edges, data on vertices,
+data on edges, indices (e.g., the CSR indexing), vertex maps and so on. Unlike the external
+storage approach where fragments are transformed into adjacent matrix to fit into a table
+schema in the database, vineyard stores the fragment with the structure, so that when we use the
+graph, the indices can be directly reused to facilitate the graph traversal. Furthermore,
+the high-level abstracted graph traversal operations are built-in with the vineyard distributed
+graph, as a result, nearly zero extra development are required to reuse the data.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<img alt="Architecture of vineyard" src="../_images/vineyard_arch.jpg" />
+<p>The figure demonstrates the architecture of vineyard.</p>
+<p>On the server/daemon side (i.e., the aforementioned vineyard instance), there are four major components:</p>
+<ol class="arabic simple">
+<li><p>The <strong>shared memory</strong> is the memory space in vineyard that shares with vineyard clients via
+the UNIX domain socket by memory mapping. As we mentioned before, the partitions of the
+distributed data are living in the shared memory of the corresponding vineyard instance in
+the cluster.</p></li>
+<li><p>The <strong>metadata manager</strong> provides management for the metadata of the data stored in vineyard.
+It keeps the structures, layouts and properties of the data to provide high-level abstractions
+(e.g., graphs, tensors, dataframes). The metadata
+managers in a vineyard cluster communicate with each other through the backend key-value store,
+e.g., etcd server, to keep the consistency of the distributed data stored in vineyard.</p></li>
+<li><p>The <strong>pluggable drivers</strong> assign specific functionalities to certain types of data in vineyard.
+In particular, I/O drivers sync with external storages such as databases and file systems to
+read data into and write data from vineyard, while partition and re-partition drivers
+reorganize the distributed graphs stored in vineyard to balance the workload. Note that the
+drivers usually employs the low-level API for delicate operations.</p></li>
+<li><p>The <strong>ipc/rpc servers</strong> handle the ipc/rpc connections respectively from vineyard clients
+and the communicator supports
+bulk exchange of data between vineyard instances. In particular, the client can get the metadata
+of the data stored in vineyard through both ipc and rpc connections. But to get the data partition,
+the client has to connect to the vineyard instance through UNIX domain socket, this is because,
+the data sharing is via the system call of memory mapping, thus requires the client
+to stay in the same machine of the vineyard instance.</p></li>
+</ol>
+<p>On the other hand, the client side consists of both the high-level APIs (e.g., edge traversals for
+distributed graphs) to easily reuse the
+data in vineyard and the low-level APIs for specific drivers to access the vineyard instance
+in a more delicate fashion.</p>
+</div>
+<div class="section" id="vineyard-object-design">
+<h2>Vineyard Object Design<a class="headerlink" href="#vineyard-object-design" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard represents all kinds of data as vineyard objects,
+for any vineyard object, it consists of two parts:</p>
+<ol class="arabic simple">
+<li><p>A set of blobs where the payload of the data lives in;</p></li>
+<li><p>A hierarchical meta tree which describes the type,
+layout and properties of the data.</p></li>
+</ol>
+<p>The decoupling design of data payload and data layout brings three benefits:</p>
+<ol class="arabic simple">
+<li><p>The payload is stored locally in each vineyard instance, while the meta data is shared
+among all the vineyard instances across the cluster. This significantly reduces the costs
+to keep the distributed data consistent.</p></li>
+<li><p>It makes vineyard objects self-interpreted, since the meta data fully determines how
+the object should be resolved. This not only brings the consistency in semantics when
+sharing vineyard objects between different systems and different programming languages,
+but also allows users to store complex data structures in high-level abstraction, such
+as graphs in CSR model directly in vineyard, without serializing/deserializing
+the object every time saving/loading it from vineyard.</p></li>
+<li><p>It facilitates the exploiting of data-aware scheduling techniques, e.g., when we process
+a graph in vineyard, we can easily access the meta tree of the graph to see how large each
+partitioned fragment is without touching the real vertices and edges of the graph, as such,
+we can assign precise amount of computation resources for each fragment to achieve overall
+performance enhancement.</p></li>
+</ol>
+<p>In particular, for the meta data and methods of vineyard objects, vineyard employs two design choices:</p>
+<ol class="arabic simple">
+<li><p>The composable design on vineyard objects to
+facilitate distributed data management;</p></li>
+<li><p>The extensible design on methods of
+vineyard objects to enable flexible data sharing between different computation systems
+with nearly zero extra development cost.</p></li>
+</ol>
+<div class="section" id="distributed-object">
+<h3>Distributed Object<a class="headerlink" href="#distributed-object" title="Permalink to this headline">¶</a></h3>
+<p>Vineyard supports store very large objects across many nodes in a cluster and allows user programs
+to treat those as a whole. Data are shaded to many machines and no replication happens.</p>
+<p>Taking <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> as an example, in real world cases the table may consists billions of rows
+and cannot be fit into a single machine. Under such conditions, the dataframe could be split
+along the index axis or column axis and every vineyard node holds a subset of chunks. Vineyard
+still provides a <em>logical view</em> about the complete dataframe and allows distributed computation
+engines like Mars and GraphScope to process such data structures as a whole.</p>
+</div>
+<div class="section" id="composable-design">
+<h3>Composable Design<a class="headerlink" href="#composable-design" title="Permalink to this headline">¶</a></h3>
+<p>The composition mechanism applies as the hierarchical tree structure
+of the meta data of vineyard objects. The root meta data of a complex object
+stores the links to the root meta data of its components, and by traversing the
+links recursively, a complete meta tree is produced for the complex object.</p>
+<p>For example, a distributed graph is composed of partitioned graph fragments, while
+a graph fragment is composed of vertices and edges within that fragment. Recall the
+decoupling design of payload and layout of vineyard objects, in a graph fragment,
+the vertices and edges within the fragment is stored locally in the corresponding
+vineyard instance for the partition, meanwhile, the meta data (e.g., partition index,
+number of vertices, and number of edges) are stored in the backend key-value store.</p>
+<p>To save a distributed graph, we first save the partitioned fragments in each vineyard instance,
+and share their meta data in the backend key-value store, and then we can create the distributed
+graph by creating the root meta data that contains the links to the root meta data of the fragments
+in an efficient fashion.</p>
+</div>
+<div class="section" id="extensible-design">
+<h3>Extensible Design<a class="headerlink" href="#extensible-design" title="Permalink to this headline">¶</a></h3>
+<p>Vineyard employs the extensible design concept of registry mechanism
+to facilitate users transplanting their data structures into vineyard.</p>
+<p>In particular, our extensible design on builders, resolvers and drivers,
+allows users to build, resolve and share their data structures easily
+through different systems and paradigms respectively, and the registry
+mechanism is so basic that even the core data structures and drivers in
+vineyard also follows the same design.</p>
+<p><strong>So what is the registry mechanism?</strong></p>
+<p>In general, the registry mechanism
+decouples the methods from the definition of vineyard data types. For
+builders and resolvers, it means users can flexibility register different
+implementation in different languages to build and resolve the same
+vineyard data type, which makes the data available to share between
+different systems and paradigms, and makes it possible to exploit native
+language optimizations.</p>
+<p>On the other hand, for drivers, the registry
+mechanism allows users to flexibly plug-in functionality methods in
+different languages for vineyard data types, which assigns required
+capability to the data types along with the data analytical process.</p>
+<p>Further more, the registered methods can be implemented and optimized
+in accordance with specific data analytical tasks for further efficiency
+augmentation.</p>
+</div>
+</div>
+<div class="section" id="implementation-details">
+<h2>Implementation Details<a class="headerlink" href="#implementation-details" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="vineyard-object">
+<h3>Vineyard object<a class="headerlink" href="#vineyard-object" title="Permalink to this headline">¶</a></h3>
+<p>As we mentioned before, for each object in vineyard, it consists of two
+parts:</p>
+<ol class="arabic simple">
+<li><p>The data payload stored in the corresponding vineyard instance locally</p></li>
+<li><p>The hierarchical meta data shared across the vineyard cluster</p></li>
+</ol>
+<p>In particualr, <code class="docutils literal notranslate"><span class="pre">Blob</span></code> is the unit where the data payload lives in a vineyard
+instance.
+A blob object holds a segment of memory in the bulk store of the vineyard
+instance, so that users can save their local buffer into a blob and
+get the blob later in another process in a zero-copy fashion through
+memory mapping.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">&quot;Hello, World!&quot;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">blob_id</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">blob</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">blob_id</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">blob</span><span class="o">.</span><span class="n">typename</span><span class="p">,</span> <span class="n">blob</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">blob</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vineyard::Blob 28 Object &lt;&quot;o800000011cfa7040&quot;: vineyard::Blob&gt;</span>
+</pre></div>
+</div>
+<p>On the other hand, the hierarchical meta data of vineyard objects are
+shared across the cluster. In the following example, for simplicity,
+we launch a vineyard cluster with
+two vineyard instances in the same machine, although in practice,
+these vineyard instances are launched distributively on each machine of the cluster.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> vineyardd --socket /var/run/vineyard.sock1
+<span class="gp">$</span> vineyardd --socket /var/run/vineyard.sock2
+</pre></div>
+</div>
+<p>Then we can create a distributed pair of arrays in vineyard with the
+first array stored in the first vineyard instance which listens to ipc_socket
+<code class="docutils literal notranslate"><span class="pre">/var/run/vineyard.sock1</span></code>, and the second array stored in the second instance
+listening to ipc_socket <code class="docutils literal notranslate"><span class="pre">/var/run/vineyard.sock2</span></code>.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">vineyard</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">vineyard.data.tensor</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># build the first array in the first vineyard instance</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">client1</span> <span class="o">=</span> <span class="n">vineyard</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;/var/run/vineyard.sock1&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">id1</span> <span class="o">=</span> <span class="n">client1</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">8</span><span class="p">))</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># build the second array in the second vineyard instance</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">client2</span> <span class="o">=</span> <span class="n">vineyard</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;/var/run/vineyard.sock2&#39;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">id2</span> <span class="o">=</span> <span class="n">client2</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># build the pair from client1</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">obj1</span> <span class="o">=</span> <span class="n">client1</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">id1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">obj2</span> <span class="o">=</span> <span class="n">client2</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">id2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">id_pair</span> <span class="o">=</span> <span class="n">client1</span><span class="o">.</span><span class="n">put</span><span class="p">((</span><span class="n">obj1</span><span class="p">,</span> <span class="n">obj2</span><span class="p">))</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># get the pair object from client2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">obj_pair</span> <span class="o">=</span> <span class="n">client2</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">id_pair</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">obj_pair</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">typename</span><span class="p">,</span> <span class="n">obj_pair</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">obj_pair</span><span class="o">.</span><span class="n">second</span><span class="o">.</span><span class="n">size</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">vineyard::Array 8 4</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;</span>&gt;&gt; <span class="c1"># get the pair value from client2</span>
+<span class="gp">&gt;</span>&gt;&gt; <span class="nv">value_pair</span> <span class="o">=</span> client2.get<span class="o">(</span>id_pair<span class="o">)</span>
+<span class="gp">&gt;</span>&gt;&gt; print<span class="o">(</span>value_pair<span class="o">)</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">(None, [1, 1, 1, 1])</span>
+</pre></div>
+</div>
+<p>Here we can get the meta data of the pair object from <code class="docutils literal notranslate"><span class="pre">client2</span></code>
+though <code class="docutils literal notranslate"><span class="pre">client1</span></code> created it, but we can’t get the payload of the
+first element of the pair from <code class="docutils literal notranslate"><span class="pre">client2</span></code>, since it is stored locally
+in the first vineyard instance.</p>
+</div>
+<div class="section" id="builder-and-resolver">
+<h3>Builder and resolver<a class="headerlink" href="#builder-and-resolver" title="Permalink to this headline">¶</a></h3>
+<p>As we shown above, vineyard allows users to register builders/resolvers to build/resolve
+vineyard objects from/to the data types in the client side based on the computation requirements.</p>
+<p>Suppose <code class="docutils literal notranslate"><span class="pre">pyarrow</span></code> types are employed in the context, then we can define the builder and
+resolver between <code class="docutils literal notranslate"><span class="pre">vineyard::NumericArray</span></code> and <code class="docutils literal notranslate"><span class="pre">pyarrow.NumericArray</span></code> as follows:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">numeric_array_builder</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">builder</span><span class="p">):</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">meta</span> <span class="o">=</span> <span class="n">ObjectMeta</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;typename&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;vineyard::NumericArray&lt;</span><span class="si">%s</span><span class="s1">&gt;&#39;</span> <span class="o">%</span> <span class="n">array</span><span class="o">.</span><span class="n">type</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;length_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;null_count_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">null_count</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;offset_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">offset</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">null_bitmap</span> <span class="o">=</span> <span class="n">buffer_builder</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">buffers</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="n">builder</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="nb">buffer</span> <span class="o">=</span> <span class="n">buffer_builder</span><span class="p">(</span><span class="n">client</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">buffers</span><span class="p">()[</span><span class="mi">1</span><span class="p">],</span> <span class="n">builder</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">meta</span><span class="o">.</span><span class="n">add_member</span><span class="p">(</span><span class="s1">&#39;buffer_&#39;</span><span class="p">,</span> <span class="nb">buffer</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">meta</span><span class="o">.</span><span class="n">add_member</span><span class="p">(</span><span class="s1">&#39;null_bitmap_&#39;</span><span class="p">,</span> <span class="n">null_bitmap</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">meta</span><span class="p">[</span><span class="s1">&#39;nbytes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">nbytes</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="k">return</span> <span class="n">client</span><span class="o">.</span><span class="n">create_metadata</span><span class="p">(</span><span class="n">meta</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">numeric_array_resolver</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">meta</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">meta</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">typename</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">typename</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">value_type</span> <span class="o">=</span> <span class="n">normalize_dtype</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;vineyard::NumericArray&lt;([^&gt;]+)&gt;&#39;</span><span class="p">,</span> <span class="n">typename</span><span class="p">)</span><span class="o">.</span><span class="n">groups</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">dtype</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">from_numpy_dtype</span><span class="p">(</span><span class="n">value_type</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="nb">buffer</span> <span class="o">=</span> <span class="n">as_arrow_buffer</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">member</span><span class="p">(</span><span class="s1">&#39;buffer_&#39;</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">null_bitmap</span> <span class="o">=</span> <span class="n">as_arrow_buffer</span><span class="p">(</span><span class="n">obj</span><span class="o">.</span><span class="n">member</span><span class="p">(</span><span class="s1">&#39;null_bitmap_&#39;</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">length</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;length_&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">null_count</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;null_count_&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">offset</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">meta</span><span class="p">[</span><span class="s1">&#39;offset_&#39;</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="k">return</span> <span class="n">pa</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">Array</span><span class="o">.</span><span class="n">from_buffers</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="p">[</span><span class="n">null_bitmap</span><span class="p">,</span> <span class="nb">buffer</span><span class="p">],</span> <span class="n">null_count</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, we register the builder and resolver for automatic building and resolving:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">builder_ctx</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">NumericArray</span><span class="p">,</span> <span class="n">numeric_array_builder</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">resolver_ctx</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;vineyard::NumericArray&#39;</span><span class="p">,</span> <span class="n">numeric_array_resolver</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="driver">
+<span id="divein-driver-label"></span><h3>Driver<a class="headerlink" href="#driver" title="Permalink to this headline">¶</a></h3>
+<p>As we shown in the getting-started, the <code class="docutils literal notranslate"><span class="pre">open</span></code> function in vineyard can open a local file as a stream
+for consuming, and we notice that the path of the local file is headed with the
+scheme <code class="docutils literal notranslate"><span class="pre">file://</span></code>.</p>
+<p>Actually, vineyard supports several different types of data
+source, e.g., <code class="docutils literal notranslate"><span class="pre">kafka://</span></code> for kafka topics. The functional methods to open different data sources as
+vineyard streams are called <code class="docutils literal notranslate"><span class="pre">drivers</span></code> in vineyard. They are registered to
+<code class="docutils literal notranslate"><span class="pre">open</span></code> for specific schemes, so that when <code class="docutils literal notranslate"><span class="pre">open</span></code> is invoked, it will dispatch the
+corresponding driver to handle the specific data source according to the scheme of
+the path.</p>
+<p>The following sample code demonstrates the dispatching logic in <code class="docutils literal notranslate"><span class="pre">open</span></code>, and the
+registration examples.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="nd">@registerize</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="n">scheme</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">scheme</span>
+
+<span class="o">&gt;&gt;&gt;</span>     <span class="k">for</span> <span class="n">reader</span> <span class="ow">in</span> <span class="nb">open</span><span class="o">.</span><span class="n">__factory</span><span class="p">[</span><span class="n">scheme</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+<span class="o">&gt;&gt;&gt;</span>         <span class="n">r</span> <span class="o">=</span> <span class="n">reader</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>         <span class="k">if</span> <span class="n">r</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+<span class="o">&gt;&gt;&gt;</span>             <span class="k">return</span> <span class="n">r</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;Unable to find a proper IO driver for </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">path</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># different driver functions are registered as follows</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">open</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="p">,</span> <span class="n">local_driver</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">open</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;kafka&#39;</span><span class="p">,</span> <span class="n">kafka_driver</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Most importantly, the registration design allows users to register their own
+drivers to <code class="docutils literal notranslate"><span class="pre">registerized</span></code> vineyard methods using <code class="docutils literal notranslate"><span class="pre">.register</span></code>, which prevents
+major revisions on the processing code to fulfill customized computation requirements.</p>
+</div>
+</div>
+<div class="section" id="features-and-limitations">
+<h2>Features and Limitations<a class="headerlink" href="#features-and-limitations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="targeted-design-for-distributed-data-sharing-in-big-data-tasks">
+<h3>Targeted design for distributed data sharing in big data tasks<a class="headerlink" href="#targeted-design-for-distributed-data-sharing-in-big-data-tasks" title="Permalink to this headline">¶</a></h3>
+<p>By examining the practice of big data tasks such as numeric computing, machine learning
+and graph analysis carefully,
+we summarize that the data involved has four properties:</p>
+<ul class="simple">
+<li><p>Distributed and each partitioned fragment usually fits into memory;</p></li>
+<li><p>Immutable, i.e., never modified after creation;</p></li>
+<li><p>With complex structure, e.g., graph in CSR format;</p></li>
+<li><p>Required to share between different computation systems and programming languages.</p></li>
+</ul>
+<p>Thus vineyard is designed accordingly with:</p>
+<ul class="simple">
+<li><p>Composable design on vineyard objects;</p></li>
+<li><p>Immutable zero-cost in-memory data sharing via memory mapping;</p></li>
+<li><p>Out-of-box high-level data abstraction for complex data structures;</p></li>
+<li><p>Extensible design on builder/resolver/driver for flexible crossing-system and
+crossing-language data sharing.</p></li>
+</ul>
+<p>In general, the design choices of vineyard are fully determined on coping
+the difficulties in handling large-scale distributed data in practice.</p>
+</div>
+<div class="section" id="out-of-box-high-level-data-abstraction">
+<h3>Out-of-box high-level data abstraction<a class="headerlink" href="#out-of-box-high-level-data-abstraction" title="Permalink to this headline">¶</a></h3>
+<p>Vineyard objects are stored with structures, and high-level abstractions.
+For instance, a graph with CSR format in vineyard stores the index as long as
+the vertices and edges, so that operations like edge iteration based on the
+index can be provided. Thus, users don’t have to implement the index-building
+function and edge iterators by themselves, which is usually required in the
+existing big data practice.</p>
+</div>
+<div class="section" id="zero-cost-in-memory-data-sharing">
+<h3>Zero-cost in-memory data sharing<a class="headerlink" href="#zero-cost-in-memory-data-sharing" title="Permalink to this headline">¶</a></h3>
+<p>Vineyard provides zero-cost data sharing by memory-mapping, since data objects
+in vineyard are immutable. When the object is created, we allocate blobs in
+vineyard to store the data payload, on the other hand, when getting the object,
+we map the blob from the vineyard instance into the application process with
+inter-process memory mapping approaches, so that no memory copy is involved
+in sharing the data payload.</p>
+</div>
+<div class="section" id="convinient-data-integration">
+<h3>Convinient data integration<a class="headerlink" href="#convinient-data-integration" title="Permalink to this headline">¶</a></h3>
+<p>The extensive design on builder/resolver/driver allows convenient extension
+of existing vineyard objects to different programming languages. Moreover,
+with codegen tools in vineyard, makes it possible for users to transplant their data
+structures into vineyard with only a few annotations.</p>
+</div>
+<div class="section" id="data-orchestration-in-a-python-notebook">
+<h3>Data orchestration in a python notebook<a class="headerlink" href="#data-orchestration-in-a-python-notebook" title="Permalink to this headline">¶</a></h3>
+<p>Using vineyard as the common data orchestration engine through the end-to-end
+big data processing, users can hold large-scale distributed data as variables
+of vineyard objects in python. Thus, as long as the computation modules
+involved provides python API, users can write down the entire processing
+pipeline in a python notebook. By running the python script, users can
+manage trillions of data and different computation systems in the background
+distributedly across the cluster.</p>
+</div>
+<div class="section" id="not-for-mutable-objects">
+<h3>NOT for mutable objects<a class="headerlink" href="#not-for-mutable-objects" title="Permalink to this headline">¶</a></h3>
+<p>Once a vineyard object is created and sealed in the vineyard instance, it
+becomes immutable and can NOT be modified anymore. Thus vineyard is not
+suitable to be utilized as a data cache to store mutable data that changes
+rapidly along the processing pipeline.</p>
+</div>
+<div class="section" id="not-for-instant-remote-data-partition-accessing">
+<h3>NOT for instant remote data partition accessing<a class="headerlink" href="#not-for-instant-remote-data-partition-accessing" title="Permalink to this headline">¶</a></h3>
+<p>The partitions of a distributed data are stored distributedly in corresponding
+vineyard instances of the cluster. Only the client on the same machine can access
+the data partition. In case to access a remote partition, data migration APIs of vineyard
+can be invoked to trigger migration process, but not for instant accessing.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <a href="getting-started.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <a href="cpp_api.html" class="btn btn-neutral float-right" title="C++ API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+
+      <p>
+        Vineyard is a <a href="https://www.cncf.io/sandbox-projects/">CNCF sandbox project</a>.
+      </p>
+      <img src="https://v6d.io/_static/cncf-color.svg" alt="CLOUD NATIVE COMPUTING FOUNDATION" width="40%"/>
+      <p>
+        The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation,
+        please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage page</a>.
+      </p>
+
+      <hr/>&#169; Copyright 2019-2021, The Vineyard Contributors.
+
+      <p></p>
+    </div>
+  
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+      <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+     
+  
+  </footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

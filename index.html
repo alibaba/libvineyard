@@ -1,0 +1,584 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta content="Vineyard (v6d), a CNCF sandbox project, is an in-memory immutable data manager that provides **out-of-the-box high-level** abstraction and **zero-copy in-memory** sharing for distributed data in big data tasks, such as graph analytics (e.g., `GraphScope`_), numerical computing (e.g., `Mars`_), and machine learning." name="description" />
+<meta content="distributed-systems, distributed, shared-memory, graph-analytics, in-memory-storage, big-data-analytics, distributed-comp" name="keywords" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>What is vineyard &mdash; vineyard  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="_static/vineyard.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="notes/install.html" />
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CYXWKLJB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CYXWKLJB8');
+</script>
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> vineyard
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/divein.html">Diving into vineyard</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/python_api.html">Python API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/contributing.html">Contributing to vineyard</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">vineyard</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>What is vineyard</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1 align="center">
+    <img src="https://v6d.io/_static/vineyard-logo.png" width="397" alt="vineyard">
+</h1>
+<p align="center">
+    an in-memory immutable data manager
+</p><p><a class="reference external" href="https://github.com/v6d-io/v6d/actions?workflow=Vineyard%20CI"><img alt="Vineyard CI" src="https://github.com/v6d-io/v6d/workflows/Vineyard%20CI/badge.svg" /></a> <a class="reference external" href="https://codecov.io/gh/v6d-io/v6d"><img alt="Coverage" src="https://codecov.io/gh/v6d-io/v6d/branch/main/graph/badge.svg" /></a> <a class="reference external" href="https://v6d.io"><img alt="Docs" src="https://img.shields.io/badge/docs-latest-brightgreen.svg" /></a> <a class="reference external" href="https://v6d.io/notes/faq.html"><img alt="FAQ" src="https://img.shields.io/badge/-FAQ-blue?logo=Read%20The%20Docs" /></a> <a class="reference external" href="https://artifacthub.io/packages/helm/vineyard/vineyard"><img alt="Artifact HUB" src="https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/vineyard" /></a> <a class="reference external" href="https://github.com/v6d-io/v6d/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/github/license/v6d-io/v6d" /></a> <a class="reference external" href="https://bestpractices.coreinfrastructure.org/projects/4902"><img alt="CII Best Practices" src="https://bestpractices.coreinfrastructure.org/projects/4902/badge" /></a> <a class="reference external" href="https://app.fossa.com/projects/git%2Bgithub.com%2Fv6d-io%2Fv6d?ref=badge_shield"><img alt="FOSSA" src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fv6d-io%2Fv6d.svg?type=shield" /></a></p>
+<p>Vineyard (v6d) is an in-memory immutable data manager
+that provides <strong>out-of-the-box high-level</strong> abstraction and <strong>zero-copy in-memory</strong> sharing for
+distributed data in big data tasks, such as graph analytics (e.g., <a class="reference external" href="https://github.com/alibaba/GraphScope">GraphScope</a>), numerical
+computing (e.g., <a class="reference external" href="https://github.com/mars-project/mars">Mars</a>), and machine learning.</p>
+<a class="reference internal image-reference" href="https://v6d.io/_static/cncf-color.svg"><img alt="Vineyard is a CNCF sandbox project" src="https://v6d.io/_static/cncf-color.svg" width="400" /></a>
+<p>Vineyard is a <a class="reference external" href="https://www.cncf.io/sandbox-projects/">CNCF sandbox project</a> and indeed made successful by its community.</p>
+<div class="section" id="what-is-vineyard">
+<h1>What is vineyard<a class="headerlink" href="#what-is-vineyard" title="Permalink to this headline">¶</a></h1>
+<p>Vineyard is designed to enable zero-copy data sharing between big data systems.
+Let’s begin with a typical machine learning task of <a class="reference external" href="https://github.com/L1aoXingyu/code-of-learn-deep-learning-with-pytorch/blob/master/chapter5_RNN/time-series/lstm-time-series.ipynb">time series prediction with LSTM</a>.
+We can see that the task is divided into steps of works:</p>
+<ul class="simple">
+<li><p>First, we read the data from the file system as a <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code>.</p></li>
+<li><p>Then, we apply some preprocessing jobs, such as eliminating null values to the dataframe.</p></li>
+<li><p>After that, we define the model, and train the model on the processed dataframe
+in PyTorch.</p></li>
+<li><p>Finally, the performance of the model is evaluated.</p></li>
+</ul>
+<p>On a single machine, although pandas and PyTorch are two different systems targeting different tasks,
+data can be shared between them efficiently with little extra-cost, with everything happening
+end-to-end in a single python script.</p>
+<img alt="Comparing the workflow with and without vineyard" src="https://v6d.io/_static/vineyard_compare.png" />
+<p>What if the input data is too big to be processed on a single machine?
+As illustrated on the left side of the figure, a common practice is to store the data as tables on
+a distributed file system (e.g., HDFS), and replace <code class="docutils literal notranslate"><span class="pre">pandas</span></code> with ETL processes using SQL over a
+big data system such as Hive and Spark. To share the data with PyTorch, the intermediate results are
+typically saved back as tables on HDFS. This can bring some headaches to developers.</p>
+<ol class="arabic simple">
+<li><p>For the same task, users are forced to program for multiple systems (SQL &amp; Python).</p></li>
+<li><p>Data could be polymorphic. Non-relational data, such as tensors, dataframes and graphs/networks (in <a class="reference external" href="https://github.com/alibaba/GraphScope">GraphScope</a>) are
+becoming increasingly prevalent. Tables and SQL may not be best way to store/exchange or process them.
+Having the data transformed from/to “tables” back and forth between different systems could be a huge
+overhead.</p></li>
+<li><p>Saving/loading the data to/from the external storage
+requires lots of memory-copies and IO costs.</p></li>
+</ol>
+<p>Vineyard is designed to solve these issues by providing:</p>
+<ol class="arabic simple">
+<li><p><strong>In-memory</strong> distributed data sharing in a <strong>zero-copy</strong> fashion to avoid
+introducing extra I/O costs by exploiting a shared memory manager derived from plasma.</p></li>
+<li><p>Built-in <strong>out-of-box high-level</strong> abstraction to share the distributed
+data with complex structures (e.g., distributed graphs)
+with nearly zero extra development cost, while the transformation costs are eliminated.</p></li>
+</ol>
+<p>As shown in the right side of the above figure, we illustrate how to integrate
+vineyard to solve the task in the big data context.</p>
+<p>First, we use <a class="reference external" href="https://github.com/mars-project/mars">Mars</a> (a tensor-based unified framework for large-scale data
+computation which scales Numpy, Pandas and Scikit-learn) to preprocess the raw data
+just like the single machine solution do, and save the preprocessed dataframe into vineyard.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 86%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>single</p></td>
+<td><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_csv</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;./data.csv&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>distributed</p></td>
+<td><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mars.dataframe</span> <span class="kn">as</span> <span class="nn">md</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">md</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;hdfs://server/data_full&#39;</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1"># after preprocessing, save the dataset to vineyard</span>
+<span class="n">vineyard_distributed_tensor_id</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">to_vineyard</span><span class="p">()</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Then, we modify the
+training phase to get the preprocessed data from vineyard. Here vineyard makes
+the sharing of distributed data between <a class="reference external" href="https://github.com/mars-project/mars">Mars</a> and PyTorch just like a local
+variable in the single machine solution.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 86%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>single</p></td>
+<td><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_X</span><span class="p">,</span> <span class="n">data_Y</span> <span class="o">=</span> <span class="n">create_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>distributed</p></td>
+<td><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">client</span> <span class="o">=</span> <span class="n">vineyard</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">vineyard_ipc_socket</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">vineyard_distributed_tensor_id</span><span class="p">)</span><span class="o">.</span><span class="n">local_partition</span><span class="p">()</span>
+<span class="n">data_X</span><span class="p">,</span> <span class="n">data_Y</span> <span class="o">=</span> <span class="n">create_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Finally, we run the training phase distributedly across the cluster.</p>
+<p>From the example, we see that with vineyard, the task in the big data context
+can be handled with only minor modifications to the single machine solution. Compare
+with the existing approaches, the
+I/O and transformation overheads are also eliminated.</p>
+</div>
+<div class="section" id="features">
+<h1>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="in-memory-immutable-data-sharing">
+<h2>In-Memory immutable data sharing<a class="headerlink" href="#in-memory-immutable-data-sharing" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard is an in-memory immutable data manager, sharing immutable data across
+different systems via shared memory without extra overheads. Vineyard eliminates
+the overhead of serialization/deserialization and IO during exchanging immutable
+data between systems.</p>
+</div>
+<div class="section" id="out-of-box-high-level-data-abstraction">
+<h2>Out-of-box high level data abstraction<a class="headerlink" href="#out-of-box-high-level-data-abstraction" title="Permalink to this headline">¶</a></h2>
+<p>Computation frameworks usually have their own data abstractions for high-level concepts,
+for example tensor could be <cite>torch.tensor</cite>, <cite>tf.Tensor</cite>, <cite>mxnet.ndarray</cite> etc., not to
+mention that every <a class="reference external" href="https://github.com/alibaba/GraphScope">graph processing engine</a>
+has its own graph structure representations.</p>
+<p>The variety of data abstractions makes the sharing hard. Vineyard provides out-of-box
+high-level data abstractions over in-memory blobs, by describing objects using hierarchical
+metadatas. Various computation systems can utilize the built-in high level data abstractions
+to exchange data with other systems in computation pipeline in a concise manner.</p>
+</div>
+<div class="section" id="stream-pipelining">
+<h2>Stream pipelining<a class="headerlink" href="#stream-pipelining" title="Permalink to this headline">¶</a></h2>
+<p>A computation doesn’t need to wait all precedent’s result arrive before starting to work.
+Vineyard provides stream as a special kind of immutable data for such pipelining scenarios.
+The precedent job can write the immutable data chunk by chunk to vineyard, while maintaining
+the data structure semantic, and the successor job reads shared-memory chunks from vineyard’s
+stream without extra copy cost, then triggers it’s own work. The overlapping helps for
+reducing the overall processing time and memory consumption.</p>
+</div>
+<div class="section" id="drivers">
+<h2>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h2>
+<p>Many big data analytical tasks have lots of boilerplate routines for tasks that
+unrelated to the computation itself, e.g., various IO adaptors, data partition
+strategies and migration jobs. As the data structure abstraction usually differs
+between systems such routines cannot be easily reused.</p>
+<p>Vineyard provides such common manipulate routines on immutable data as drivers.
+Besides sharing the high level data abstractions, vineyard extends the capability
+of data structures by drivers, enabling out-of-box reusable routines for the
+boilerplate part in computation jobs.</p>
+</div>
+</div>
+<div class="section" id="integrate-with-kubernetes">
+<h1>Integrate with Kubernetes<a class="headerlink" href="#integrate-with-kubernetes" title="Permalink to this headline">¶</a></h1>
+<p>Vineyard helps share immutable data between different workloads, is a natural fit
+to cloud-native computing. Vineyard could provide efficient distributed data sharing
+in cloud-native environment by embracing cloud-native big data processing and Kubernetes
+helps vineyard leverage the scale-in/out and scheduling ability of Kubernetes.</p>
+<div class="section" id="deployment">
+<h2>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h2>
+<p>For better leveraging the scale-in/out capability of Kubernetes for worker pods of
+a data analytical job, vineyard could be deployed on Kubernetes to as a DaemonSet
+in Kubernetes cluster. Vineyard pods shares memory with worker pods using a UNIX
+domain socket with fine-grained access control.</p>
+<p>The UNIX domain socket can be either mounted on <code class="docutils literal notranslate"><span class="pre">hostPath</span></code> or via a <code class="docutils literal notranslate"><span class="pre">PersistentVolumeClaim</span></code>.
+When users bundle vineyard and the workload to the same pod, the UNIX domain socket
+could also be shared using an <code class="docutils literal notranslate"><span class="pre">emptyDir</span></code>.</p>
+</div>
+<div class="section" id="deployment-with-helm">
+<h2>Deployment with Helm<a class="headerlink" href="#deployment-with-helm" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard also has tight integration with Kubernetes and Helm. Vineyard can be deployed
+with <code class="docutils literal notranslate"><span class="pre">helm</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>helm repo add vineyard https://vineyard.oss-ap-southeast-1.aliyuncs.com/charts/
+helm install vineyard vineyard/vineyard
+</pre></div>
+</div>
+<p>In the further vineyard will improve the integration with Kubernetes by abstract
+vineyard objects as as Kubernetes resources (i.e., CRDs), and leverage a vineyard
+operator to operate vineyard cluster.</p>
+</div>
+</div>
+<div class="section" id="install-vineyard">
+<h1>Install vineyard<a class="headerlink" href="#install-vineyard" title="Permalink to this headline">¶</a></h1>
+<p>Vineyard is distributed as a <a class="reference external" href="https://pypi.org/project/vineyard/">python package</a> and can be easily installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3 install vineyard
+</pre></div>
+</div>
+<p>The latest version of online documentation can be found at <a class="reference external" href="https://v6d.io">https://v6d.io</a>.</p>
+<p>If you want to build vineyard from source, please refer to <a class="reference external" href="https://github.com/v6d-io/v6d/blob/main/docs/notes/install.rst">Installation</a>.</p>
+</div>
+<div class="section" id="faq">
+<h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
+<p>Vineyard shares many similarities with other opensource projects, but still differs
+a lot with them. We are frequently asked with the following questions about vineyard,</p>
+<ul>
+<li><p>Q: Can clients look at the data while the stream is being filled?</p>
+<p>One piece of data for multiple clients is one of the target scenarios as the
+data live in vineyard is <em>immutable</em>, and multiple clients can safely consume
+the same piece of data by memory sharing, without the extra cost and extra memory
+usage of copying data back and forth.</p>
+</li>
+<li><p>Q: How vineyard avoids serialization/deserialization between systems in different languages?</p>
+<p>Vineyard provides higher-level data abstractions (e.g., ndarrays, dataframes) that
+could be shared in a natural way between different processes.</p>
+</li>
+<li><p>… …</p></li>
+</ul>
+<p>For more detailed information, please refer to our <a class="reference external" href="https://v6d.io/notes/faq.html">FAQ</a> page.</p>
+</div>
+<div class="section" id="getting-involved">
+<h1>Getting involved<a class="headerlink" href="#getting-involved" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Join in the <a class="reference external" href="https://slack.cncf.io/">CNCF Slack</a> and navigate to the <code class="docutils literal notranslate"><span class="pre">#vineyard</span></code> channel for discussion.</p></li>
+<li><p>Read <a class="reference external" href="https://github.com/v6d-io/v6d/blob/main/CONTRIBUTING.rst">contribution guide</a>.</p></li>
+<li><p>Please report bugs by submitting a <a class="reference external" href="https://github.com/v6d-io/v6d/issues/new">GitHub issue</a> or ask me anything in <a class="reference external" href="https://github.com/v6d-io/v6d/discussions/new">Github discussion</a>.</p></li>
+<li><p>Submit contributions using pull requests.</p></li>
+</ul>
+<p>Thank you in advance for your contributions to vineyard!</p>
+</div>
+<div class="section" id="acknowledgements">
+<h1>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h1>
+<p>We thank the following excellent opensource projects:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/apache/arrow">apache-arrow</a>, a cross-language development platform for in-memory analytics;</p></li>
+<li><p><a class="reference external" href="https://github.com/boostorg/leaf">boost-leaf</a>, a C++ lightweight error augmentation framework;</p></li>
+<li><p><a class="reference external" href="http://gee.cs.oswego.edu/dl/html/malloc.htmlp">dlmalloc</a>, Doug Lea’s memory allocator;</p></li>
+<li><p><a class="reference external" href="https://github.com/etcd-cpp-apiv3/etcd-cpp-apiv3">etcd-cpp-apiv3</a>, a C++ API for etcd’s v3 client API;</p></li>
+<li><p><a class="reference external" href="https://github.com/skarupke/flat_hash_map">flat_hash_map</a>, an efficient hashmap implementation;</p></li>
+<li><p><a class="reference external" href="https://github.com/jemalloc/jemalloc">jemalloc</a> a general purpose <code class="docutils literal notranslate"><span class="pre">malloc(3)</span></code> implementation.</p></li>
+<li><p><a class="reference external" href="https://github.com/nlohmann/json">nlohmann/json</a>, a json library for modern c++.</p></li>
+<li><p><a class="reference external" href="https://github.com/pybind/pybind11">pybind11</a>, a library for seamless operability between C++11 and Python;</p></li>
+<li><p><a class="reference external" href="https://github.com/dask/s3fs">s3fs</a>, a library provide a convenient Python filesystem interface for S3.</p></li>
+<li><p><a class="reference external" href="https://github.com/oneapi-src/oneTBB">tbb</a> a C++ library for threading building blocks.</p></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
+<p><strong>Vineyard</strong> is distributed under <a class="reference external" href="https://github.com/v6d-io/v6d/blob/main/LICENSE">Apache License 2.0</a>. Please note that
+third-party libraries may not have the same license as vineyard.</p>
+<p><a class="reference external" href="https://app.fossa.com/projects/git%2Bgithub.com%2Fv6d-io%2Fv6d?ref=badge_large"><img alt="FOSSA Status" src="https://app.fossa.com/api/projects/git%2Bgithub.com%2Fv6d-io%2Fv6d.svg?type=large" /></a></p>
+</div>
+<div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/install.html#install-vineyard">Install vineyard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/install.html#install-etcd">Install etcd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/install.html#prepare-dependencies">Prepare dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/install.html#install-from-source">Install from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/install.html#build-python-wheels">Build python wheels</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes/getting-started.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/getting-started.html#starting-vineyard-server">Starting vineyard server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/getting-started.html#connecting-to-vineyard">Connecting to vineyard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/getting-started.html#getting-and-putting-python-object">Getting and putting Python object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/getting-started.html#creating-a-dataframe">Creating a dataframe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/getting-started.html#shared-memory">Shared Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/getting-started.html#using-streams">Using streams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes/divein.html">Diving into vineyard</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/divein.html#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/divein.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/divein.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/divein.html#vineyard-object-design">Vineyard Object Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/divein.html#implementation-details">Implementation Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/divein.html#features-and-limitations">Features and Limitations</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/cpp_api.html">C++ API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/cpp_api.html#objectid-and-object">ObjectID and Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/cpp_api.html#metadata-of-objects">Metadata of objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/cpp_api.html#connect-to-vineyard">Connect to vineyard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/cpp_api.html#state-of-server">State of server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/cpp_api.html#primitives">Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/cpp_api.html#stream">Stream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/cpp_api.html#data-types">Data types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/cpp_api.html#distributed-data-types">Distributed data types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes/python_api.html">Python API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/python_api.html#objectid-and-object">ObjectID and Object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/python_api.html#metadata-of-objects">Metadata of objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/python_api.html#connect-to-vineyard">Connect to vineyard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/python_api.html#state-of-server">State of server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/python_api.html#primitives">Primitives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/python_api.html#shared-memory">Shared Memory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/python_api.html#deployment">Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/python_api.html#io-facilities">IO Facilities</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="development">
+<h1>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="notes/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notes/roadmap.html">Roadmap</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/roadmap.html#v0-5-0">v0.5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/roadmap.html#v0-4-0">v0.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/roadmap.html#v0-3-0">v0.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/roadmap.html#v0-2-0">v0.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/roadmap.html#v0-1-0">v0.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/roadmap.html#release-notes">Release Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="notes/contributing.html">Contributing to vineyard</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="notes/contributing.html#install-development-dependencies">Install development dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/contributing.html#build-the-source">Build the source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/contributing.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="notes/contributing.html#bug-report-and-pull-requests">Bug report and pull requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="notes/contributing.html#code-format">Code format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notes/contributing.html#open-a-pull-request">Open a pull request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="notes/contributing.html#git-workflow-for-newcomers">Git workflow for newcomers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="notes/contributing.html#cut-a-release">Cut a release</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indexes">
+<h1>Indexes<a class="headerlink" href="#indexes" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">API Index</span></a></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <a href="notes/install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+
+      <p>
+        Vineyard is a <a href="https://www.cncf.io/sandbox-projects/">CNCF sandbox project</a>.
+      </p>
+      <img src="https://v6d.io/_static/cncf-color.svg" alt="CLOUD NATIVE COMPUTING FOUNDATION" width="40%"/>
+      <p>
+        The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation,
+        please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage page</a>.
+      </p>
+
+      <hr/>&#169; Copyright 2019-2021, The Vineyard Contributors.
+
+      <p></p>
+    </div>
+  
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+      <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+     
+  
+  </footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

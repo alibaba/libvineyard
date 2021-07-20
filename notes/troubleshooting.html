@@ -1,0 +1,322 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Troubleshooting &mdash; vineyard  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/vineyard.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Roadmap" href="roadmap.html" />
+    <link rel="prev" title="Frequently Asked Questions" href="faq.html" />
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CYXWKLJB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CYXWKLJB8');
+</script>
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> vineyard
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="divein.html">Diving into vineyard</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api.html">Python API Reference</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to vineyard</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vineyard</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Troubleshooting</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/notes/troubleshooting.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
+<p>You may have problems when operates vineyard, and content in this page
+could helps you when error occurs.</p>
+<ol class="arabic simple">
+<li><p><em>Etcd hasn’t been configured properly</em></p></li>
+</ol>
+<blockquote>
+<div><p>You may see the following error when sending requests to vineyard:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Etcd</span> <span class="n">error</span><span class="p">:</span> <span class="n">etcdserver</span><span class="p">:</span> <span class="n">too</span> <span class="n">many</span> <span class="n">operations</span> <span class="ow">in</span> <span class="n">txn</span> <span class="n">request</span><span class="p">,</span> <span class="n">error</span> <span class="n">code</span><span class="p">:</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>That means your etcd hasn’t been configured properly and doesn’t support
+more than 128 operations inside a transaction. You could check your etcd
+startup parameters and set <code class="code docutils literal notranslate"><span class="pre">--max-txn-ops</span></code> to a larger value, for
+example <code class="code docutils literal notranslate"><span class="pre">102400</span></code>.</p>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p><em>Encounter strange behaviors when working with pyarrow</em></p></li>
+</ol>
+<blockquote>
+<div><p>The python SDK of vineyard depends on libarrow-dev. When the module is imported
+along with pyarrow there will be a tons of DLL conflict issues that need to be
+resolved, see <a class="reference external" href="https://issues.apache.org/jira/browse/ARROW-10599">https://issues.apache.org/jira/browse/ARROW-10599</a> for more details.</p>
+<p>That means, we need to keep the consistence of apache-arrow’s installation and
+vineyard’s installation. More specifically,</p>
+<ul>
+<li><p>For users, just install pyarrow and vineyard both using the <code class="code docutils literal notranslate"><span class="pre">pip</span></code> package
+manager should be enough. You could install them by</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">pyarrow</span> <span class="n">vineyard</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>For developers of vineyard, the localized installed pyarrow should be built
+from scratch, using the system-wide libarrow-dev, that can be achieved by</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">binary</span> <span class="n">pyarrow</span> <span class="n">pyarrow</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>Besides, you may also meet strange crashes or runtime exceptions if you have
+<code class="code docutils literal notranslate"><span class="pre">import</span></code> pyarrow before vineyard, you could try to adjust the import order
+by <code class="code docutils literal notranslate"><span class="pre">import</span> <span class="pre">vineyard</span></code> before <code class="code docutils literal notranslate"><span class="pre">import</span> <span class="pre">pyarrow</span></code>. And please export environment
+variable <code class="code docutils literal notranslate"><span class="pre">VINEYARD_DEV=TRUE</span></code> if you have encountered any shared library related
+issue.</p>
+</div></blockquote>
+<ol class="arabic simple" start="3">
+<li><p><em>Resource of etcd pod when deploying on Kubernetes</em></p></li>
+</ol>
+<blockquote>
+<div><p>We have noticed that etcd performs pretty poor when vineyard client persist a large
+object, especially in Kubernetes deployment the CPU cores of etcd pod is limited by
+cgroup. For such cases, users need to increase the CPU resources of etcd pod. For
+more details about etcd tuning, please refer to the section <a class="reference external" href="https://etcd.io/docs/v3.4.0/op-guide/hardware/">Hardware recommendations</a>
+in etcd docs.</p>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p><em>Installation Error: Could not find package configuration file provided by: libgrapelite</em></p></li>
+</ol>
+<blockquote>
+<div><p>While attempting to install vineyard from source, user may face this error. A module
+named “Graph” in vineyard which is used for distributed data structure
+requires <a class="reference external" href="https://github.com/alibaba/libgrape-lite">libgrape-lite library</a> .
+This issue can be resolved by:</p>
+<ul class="simple">
+<li><p>By installing the libgrape-lite library.</p></li>
+<li><p>Disabling the part by the following code:</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">cmake .. -DBUILD_VINEYARD_GRAPH=OFF</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <a href="faq.html" class="btn btn-neutral float-left" title="Frequently Asked Questions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <a href="roadmap.html" class="btn btn-neutral float-right" title="Roadmap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+
+      <p>
+        Vineyard is a <a href="https://www.cncf.io/sandbox-projects/">CNCF sandbox project</a>.
+      </p>
+      <img src="https://v6d.io/_static/cncf-color.svg" alt="CLOUD NATIVE COMPUTING FOUNDATION" width="40%"/>
+      <p>
+        The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation,
+        please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage page</a>.
+      </p>
+
+      <hr/>&#169; Copyright 2019-2021, The Vineyard Contributors.
+
+      <p></p>
+    </div>
+  
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+      <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+     
+  
+  </footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

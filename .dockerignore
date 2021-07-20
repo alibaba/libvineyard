@@ -1,0 +1,42 @@
+.git
+
+# contents from .gitignore
+build/
+build-mac/
+install/
+build-static/
+build-static-mac/
+install-static/
+build-docker/
+install-docker/
+build-docker-gsa/
+install-docker-gsa/
+*.code-workspace
+.vscode
+.idea
+.DS_store
+cmake-build-debug
+
+# for python packaging
+dist/
+*.egg-info/
+*.so
+*.dylib
+*.a
+*.pyc
+*.bin
+
+# generated files
+*.vineyard.h
+
+# etcd data directory during testing
+default.etcd/
+
+# tmp data directory during building image
+docker/dist/
+
+# docs
+docs/_build/
+
+# go vendor
+vendor/

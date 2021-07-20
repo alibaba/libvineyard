@@ -1,0 +1,620 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>vineyard.shared_memory.shared_memory &mdash; vineyard  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/vineyard.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CYXWKLJB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CYXWKLJB8');
+</script>
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> vineyard
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/divein.html">Diving into vineyard</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/python_api.html">Python API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../notes/contributing.html">Contributing to vineyard</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">vineyard</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>vineyard.shared_memory.shared_memory</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for vineyard.shared_memory.shared_memory</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright 2020-2021 Alibaba Group Holding Limited.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1">#</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">The shared_memory module provides similar interface like multiprocessing.shared_memory</span>
+<span class="sd">for direct access shared memory backed by vineyard across processes.</span>
+
+<span class="sd">The API is kept consistent with multiprocessing.shared_memory but the semantics is slightly</span>
+<span class="sd">different. For vineyard, to make the shared memory visible for other process, a explictly</span>
+<span class="sd">``seal`` or ``close`` operation is needed.</span>
+
+<span class="sd">Refer to the documentation of multiprocessing.shared_memory for details.</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">multiprocessing.shared_memory</span> <span class="k">as</span> <span class="nn">shm</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="c1"># multiprocessing.shared_memory is available since Python 3.8, we use the slim library</span>
+    <span class="c1"># for earlier version of Python.</span>
+    <span class="c1">#</span>
+    <span class="c1"># see also github #327.</span>
+    <span class="kn">import</span> <span class="nn">shared_memory</span> <span class="k">as</span> <span class="nn">shm</span>
+
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">vineyard._C</span> <span class="k">import</span> <span class="n">ObjectID</span>
+
+
+<div class="viewcode-block" id="SharedMemory"><a class="viewcode-back" href="../../../notes/python_api.html#vineyard.shared_memory.SharedMemory">[docs]</a><span class="k">class</span> <span class="nc">SharedMemory</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vineyard_client</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Create or obtain a shared memory block that backed by vineyard.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            vineyard_client:</span>
+<span class="sd">                The vineyard IPC or RPC client.</span>
+<span class="sd">            name:</span>
+<span class="sd">                The vineyard ObjectID, could be vineyard.ObjectID, int or stringified ObjectID.</span>
+<span class="sd">            create:</span>
+<span class="sd">                Whether to create a new shared memory block or just obtain existing one.</span>
+<span class="sd">            size:</span>
+<span class="sd">                Size of the shared memory block.</span>
+
+<span class="sd">            See Also</span>
+<span class="sd">            --------</span>
+<span class="sd">            multiprocessing.shared_memory.SharedMemory</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">size</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;size&#39; must be a positive integer&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">create</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;size&#39; must be a positive number different from zero&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;name&#39; can only be None if create=True&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">size</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;&#39;size&#39; will take no effect if create=False&quot;</span><span class="p">,</span> <span class="p">)</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;&#39;name&#39; cannot be None if create=False&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buf</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_blob</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blob_builder</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vineyard_client</span> <span class="o">=</span> <span class="n">vineyard_client</span>
+
+        <span class="k">if</span> <span class="n">create</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_blob_builder</span> <span class="o">=</span> <span class="n">vineyard_client</span><span class="o">.</span><span class="n">create_blob</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blob_builder</span><span class="o">.</span><span class="n">id</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">size</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_buf</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_blob_builder</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_blob</span> <span class="o">=</span> <span class="n">vineyard_client</span><span class="o">.</span><span class="n">get_object</span><span class="p">(</span><span class="n">ObjectID</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blob</span><span class="o">.</span><span class="n">id</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blob</span><span class="o">.</span><span class="n">size</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_buf</span> <span class="o">=</span> <span class="nb">memoryview</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_blob</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__reduce__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span>
+            <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="kc">False</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s1">&#39;</span><span class="si">{self.__class__.__name__}</span><span class="s1">(</span><span class="si">{self.name!r}</span><span class="s1">, size=</span><span class="si">{self.size}</span><span class="s1">)&#39;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">buf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;A memoryview of contents of the shared memory block.&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buf</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Unique name that identifies the shared memory block.&quot;</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Size in bytes.&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span>
+
+<div class="viewcode-block" id="SharedMemory.freeze"><a class="viewcode-back" href="../../../notes/python_api.html#vineyard.shared_memory.SharedMemory.freeze">[docs]</a>    <span class="k">def</span> <span class="nf">freeze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Seal the shared memory to make it visible for other processes.&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blob_builder</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_blob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blob_builder</span><span class="o">.</span><span class="n">seal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vineyard_client</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_blob_builder</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span>
+
+<div class="viewcode-block" id="SharedMemory.unlink"><a class="viewcode-back" href="../../../notes/python_api.html#vineyard.shared_memory.SharedMemory.unlink">[docs]</a>    <span class="k">def</span> <span class="nf">unlink</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Requests that the underlying shared memory block be destroyed.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_blob</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_vineyard_client</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_blob</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_blob</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_blob_builder</span><span class="o">.</span><span class="n">abort</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vineyard_client</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_blob_builder</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buf</span> <span class="o">=</span> <span class="kc">None</span></div></div>
+
+
+<span class="n">_encoding</span> <span class="o">=</span> <span class="s2">&quot;utf8&quot;</span>
+
+
+<div class="viewcode-block" id="ShareableList"><a class="viewcode-back" href="../../../notes/python_api.html#vineyard.shared_memory.ShareableList">[docs]</a><span class="k">class</span> <span class="nc">ShareableList</span><span class="p">(</span><span class="n">shm</span><span class="o">.</span><span class="n">ShareableList</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Pattern for a mutable list-like object shareable via a shared</span>
+<span class="sd">    memory block.  It differs from the built-in list type in that these</span>
+<span class="sd">    lists can not change their overall length (i.e. no append, insert,</span>
+<span class="sd">    etc.)</span>
+
+<span class="sd">    Because values are packed into a memoryview as bytes, the struct</span>
+<span class="sd">    packing format for any storable value must require no more than 8</span>
+<span class="sd">    characters to describe its format.</span>
+
+<span class="sd">    The ShareableList in vineyard differs slightly with its equivalent</span>
+<span class="sd">    in the multiprocessing.shared_memory.ShareableList, as it becomes</span>
+<span class="sd">    immutable after obtaining from the vineyard backend.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    multiprocessing.shared_memory.ShareableList</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="c1"># yapf: disable</span>
+
+    <span class="c1"># note that the implementation of ``__init__`` entirely comes from multiprocessing.shared_memory.</span>
+    <span class="c1">#</span>
+    <span class="c1"># and note that https://github.com/python/cpython/commit/c8f1715283ec51822fb37a702bf253cbac1af276</span>
+    <span class="c1"># has made a set of changes to the ``ShareableList`` code.</span>
+    <span class="c1">#</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vineyard_client</span><span class="p">,</span> <span class="n">sequence</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">sequence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                    <span class="s2">&quot;&#39;name&#39; will take no effect as we are going to create a ShareableList&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+
+            <span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span> <span class="ow">or</span> <span class="p">()</span>
+            <span class="n">_formats</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_types_mapping</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)]</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">))</span>
+                    <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_types_mapping</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)]</span> <span class="o">%</span> <span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_alignment</span> <span class="o">*</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alignment</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span>
+                    <span class="p">)</span>
+                <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sequence</span>
+            <span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">_formats</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">8</span> <span class="k">for</span> <span class="n">fmt</span> <span class="ow">in</span> <span class="n">_formats</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># The offsets of each list element into the shared memory&#39;s</span>
+            <span class="c1"># data area (0 meaning the start of the data area, not the start</span>
+            <span class="c1"># of the shared memory area).</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_allocated_offsets</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">fmt</span> <span class="ow">in</span> <span class="n">_formats</span><span class="p">:</span>
+                <span class="n">offset</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alignment</span> <span class="k">if</span> <span class="n">fmt</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;s&quot;</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">fmt</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_allocated_offsets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+            <span class="n">_recreation_codes</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_extract_recreation_code</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">sequence</span>
+            <span class="p">]</span>
+            <span class="n">requested_size</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">calcsize</span><span class="p">(</span>
+                <span class="s2">&quot;q&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_size_metainfo</span> <span class="o">+</span>
+                <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_formats</span><span class="p">)</span> <span class="o">+</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_format_packing_metainfo</span> <span class="o">+</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_format_back_transform_codes</span>
+            <span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">shm</span> <span class="o">=</span> <span class="n">SharedMemory</span><span class="p">(</span><span class="n">vineyard_client</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">requested_size</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shm</span> <span class="o">=</span> <span class="n">SharedMemory</span><span class="p">(</span><span class="n">vineyard_client</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">sequence</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_enc</span> <span class="o">=</span> <span class="n">_encoding</span>
+            <span class="n">struct</span><span class="o">.</span><span class="n">pack_into</span><span class="p">(</span>
+                <span class="s2">&quot;q&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_size_metainfo</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span>
+                <span class="mi">0</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span><span class="p">,</span>
+                <span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_allocated_offsets</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">struct</span><span class="o">.</span><span class="n">pack_into</span><span class="p">(</span>
+                <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_formats</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_offset_data_start</span><span class="p">,</span>
+                <span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">_enc</span><span class="p">)</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">struct</span><span class="o">.</span><span class="n">pack_into</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_format_packing_metainfo</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_offset_packing_formats</span><span class="p">,</span>
+                <span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">_enc</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_formats</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">struct</span><span class="o">.</span><span class="n">pack_into</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_format_back_transform_codes</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_offset_back_transform_codes</span><span class="p">,</span>
+                <span class="o">*</span><span class="p">(</span><span class="n">_recreation_codes</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>  <span class="c1"># Obtains size from offset 0 in buffer.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_allocated_offsets</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+                <span class="n">struct</span><span class="o">.</span><span class="n">unpack_from</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_format_size_metainfo</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span>
+                    <span class="mi">1</span> <span class="o">*</span> <span class="mi">8</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_back_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
+        <span class="s2">&quot;Gets the back transformation function for a single value.&quot;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Requested position out of range.&quot;</span><span class="p">)</span>
+
+        <span class="n">transform_code</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack_from</span><span class="p">(</span>
+            <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_offset_back_transform_codes</span> <span class="o">+</span> <span class="n">position</span>
+        <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">transform_function</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_back_transforms_mapping</span><span class="p">[</span><span class="n">transform_code</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">transform_function</span>
+
+    <span class="k">def</span> <span class="nf">_set_packing_format_and_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">fmt_as_str</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the packing format and back transformation code for a</span>
+<span class="sd">        single value in the list at the specified position.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">position</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Requested position out of range.&quot;</span><span class="p">)</span>
+
+        <span class="n">struct</span><span class="o">.</span><span class="n">pack_into</span><span class="p">(</span>
+            <span class="s2">&quot;8s&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_offset_packing_formats</span> <span class="o">+</span> <span class="n">position</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span>
+            <span class="n">fmt_as_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">_encoding</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">transform_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_recreation_code</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">struct</span><span class="o">.</span><span class="n">pack_into</span><span class="p">(</span>
+            <span class="s2">&quot;b&quot;</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_offset_back_transform_codes</span> <span class="o">+</span> <span class="n">position</span><span class="p">,</span>
+            <span class="n">transform_code</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">position</span> <span class="k">if</span> <span class="n">position</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">position</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset_data_start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allocated_offsets</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+            <span class="p">(</span><span class="n">v</span><span class="p">,)</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack_from</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_packing_format</span><span class="p">(</span><span class="n">position</span><span class="p">),</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span>
+                <span class="n">offset</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;index out of range&quot;</span><span class="p">)</span>
+
+        <span class="n">back_transform</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_back_transform</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">back_transform</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">v</span>
+
+    <span class="k">def</span> <span class="nf">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">position</span> <span class="k">if</span> <span class="n">position</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">position</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">item_offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allocated_offsets</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset_data_start</span> <span class="o">+</span> <span class="n">item_offset</span>
+            <span class="n">current_format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_packing_format</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;assignment index out of range&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">)):</span>
+            <span class="n">new_format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_types_mapping</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)]</span>
+            <span class="n">encoded_value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">allocated_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allocated_offsets</span><span class="p">[</span><span class="n">position</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">item_offset</span>
+
+            <span class="n">encoded_value</span> <span class="o">=</span> <span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">_encoding</span><span class="p">)</span>
+                             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoded_value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">allocated_length</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;bytes/str item exceeds available storage&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current_format</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;s&quot;</span><span class="p">:</span>
+                <span class="n">new_format</span> <span class="o">=</span> <span class="n">current_format</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_types_mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">%</span> <span class="p">(</span>
+                    <span class="n">allocated_length</span><span class="p">,</span>
+                <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_packing_format_and_transform</span><span class="p">(</span>
+            <span class="n">position</span><span class="p">,</span>
+            <span class="n">new_format</span><span class="p">,</span>
+            <span class="n">value</span>
+        <span class="p">)</span>
+        <span class="n">struct</span><span class="o">.</span><span class="n">pack_into</span><span class="p">(</span><span class="n">new_format</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">buf</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">encoded_value</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_format_size_metainfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;The struct packing format used for the items&#39; storage offsets.&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;q&quot;</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_format_packing_metainfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;The struct packing format used for the items&#39; packing formats.&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;8s&quot;</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_format_back_transform_codes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;The struct packing format used for the items&#39; back transforms.&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;b&quot;</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_offset_data_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># - 8 bytes for the list length</span>
+        <span class="c1"># - (N + 1) * 8 bytes for the element offsets</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mi">8</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_offset_packing_formats</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset_data_start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allocated_offsets</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_offset_back_transform_codes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset_packing_formats</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_list_len</span> <span class="o">*</span> <span class="mi">8</span>
+
+    <span class="c1"># yapf: enable</span>
+
+<div class="viewcode-block" id="ShareableList.freeze"><a class="viewcode-back" href="../../../notes/python_api.html#vineyard.shared_memory.ShareableList.freeze">[docs]</a>    <span class="k">def</span> <span class="nf">freeze</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39; Make the shareable list immutable and visible for other vineyard clients.</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shm</span><span class="o">.</span><span class="n">freeze</span><span class="p">()</span></div></div>
+
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SharedMemory&#39;</span><span class="p">,</span> <span class="s1">&#39;ShareableList&#39;</span><span class="p">]</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+
+      <p>
+        Vineyard is a <a href="https://www.cncf.io/sandbox-projects/">CNCF sandbox project</a>.
+      </p>
+      <img src="https://v6d.io/_static/cncf-color.svg" alt="CLOUD NATIVE COMPUTING FOUNDATION" width="40%"/>
+      <p>
+        The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation,
+        please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage page</a>.
+      </p>
+
+      <hr/>&#169; Copyright 2019-2021, The Vineyard Contributors.
+
+      <p></p>
+    </div>
+  
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+      <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+     
+  
+  </footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

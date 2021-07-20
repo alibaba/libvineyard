@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Installation &mdash; vineyard  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/vineyard.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Getting Started" href="getting-started.html" />
+    <link rel="prev" title="What is vineyard" href="../index.html" />
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CYXWKLJB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CYXWKLJB8');
+</script>
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> vineyard
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-vineyard">Install vineyard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-etcd">Install etcd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-dependencies">Prepare dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ubuntu-or-debian">Ubuntu (or Debian)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macos">MacOS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#install-from-source">Install from source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-python-wheels">Build python wheels</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="divein.html">Diving into vineyard</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api.html">Python API Reference</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to vineyard</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vineyard</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/notes/install.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="install-vineyard">
+<h2>Install vineyard<a class="headerlink" href="#install-vineyard" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard is distributed as a <a class="reference external" href="https://pypi.org/project/vineyard/">python package</a>
+and can be easily installed with <code class="code docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3 install vineyard
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-etcd">
+<h2>Install etcd<a class="headerlink" href="#install-etcd" title="Permalink to this headline">¶</a></h2>
+<p>Start vineyard requires etcd (&gt;= 3.3.0), a latest version of etcd can be downloaded via</p>
+<p>for Ubuntu or (Debian):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>wget https://github.com/etcd-io/etcd/releases/download/v3.4.13/etcd-v3.4.13-linux-amd64.tar.gz
+tar zxvf etcd-v3.4.13-linux-amd64.tar.gz
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>etcd-v3.4.13-linux-amd64:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+<p>Or for MacOS:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>wget https://github.com/etcd-io/etcd/releases/download/v3.4.13/etcd-v3.4.13-darwin-amd64.zip
+unzip etcd-v3.4.13-darwin-amd64.zip
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>etcd-v3.4.13-darwin-amd64:<span class="nv">$PATH</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="prepare-dependencies">
+<h2>Prepare dependencies<a class="headerlink" href="#prepare-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard can be built and deployed on common Unix-like systems. Vineyard has been
+fully tests with C++ compilers that supports C++ 14.</p>
+<p>Vineyard requires the following software as dependencies to build and run:</p>
+<ul class="simple">
+<li><p>apache-arrow &gt;= 0.17.1</p></li>
+<li><p>gflags</p></li>
+<li><p>glog</p></li>
+<li><p>boost</p></li>
+<li><p>mpi, for the graph data structure module</p></li>
+<li><p>gtest, for build test suites</p></li>
+</ul>
+<p>If you want to build the vineyard server, the following additional libraries are needed:</p>
+<ul class="simple">
+<li><p>protobuf</p></li>
+<li><p>grpc</p></li>
+</ul>
+<p>And the following python packages is required:</p>
+<ul class="simple">
+<li><p>libclang</p></li>
+<li><p>parsec</p></li>
+</ul>
+<p>and other packages to help us build the documentation, which can be easily installed using <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>pip3 install libclang parsec <span class="nv">yapf</span><span class="o">==</span><span class="m">0</span>.30.0 sphinx sphinx_rtd_theme breathe
+</pre></div>
+</div>
+<div class="section" id="ubuntu-or-debian">
+<h3>Ubuntu (or Debian)<a class="headerlink" href="#ubuntu-or-debian" title="Permalink to this headline">¶</a></h3>
+<p>Vineyard has been fully tested on Ubuntu 20.04. The dependencies can be installed by</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>apt-get install -y ca-certificates <span class="se">\</span>
+                   cmake <span class="se">\</span>
+                   doxygen <span class="se">\</span>
+                   libboost-all-dev <span class="se">\</span>
+                   libcurl4-openssl-dev <span class="se">\</span>
+                   libgflags-dev <span class="se">\</span>
+                   libgoogle-glog-dev <span class="se">\</span>
+                   libgrpc-dev <span class="se">\</span>
+                   libgrpc++-dev <span class="se">\</span>
+                   libmpich-dev <span class="se">\</span>
+                   libprotobuf-dev <span class="se">\</span>
+                   libssl-dev <span class="se">\</span>
+                   libunwind-dev <span class="se">\</span>
+                   libz-dev <span class="se">\</span>
+                   protobuf-compiler-grpc <span class="se">\</span>
+                   python3-pip <span class="se">\</span>
+                   wget
+</pre></div>
+</div>
+<p>Then install the apache-arrow (see also <a class="reference external" href="https://arrow.apache.org/install/">https://arrow.apache.org/install</a>):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>wget https://apache.jfrog.io/artifactory/arrow/<span class="k">$(</span>lsb_release --id --short <span class="p">|</span> tr <span class="s1">&#39;A-Z&#39;</span> <span class="s1">&#39;a-z&#39;</span><span class="k">)</span>/apache-arrow-apt-source-latest-<span class="k">$(</span>lsb_release --codename --short<span class="k">)</span>.deb <span class="se">\</span>
+    -O /tmp/apache-arrow-apt-source-latest-<span class="k">$(</span>lsb_release --codename --short<span class="k">)</span>.deb
+apt install -y -V /tmp/apache-arrow-apt-source-latest-<span class="k">$(</span>lsb_release --codename --short<span class="k">)</span>.deb
+apt update -y
+apt install -y libarrow-dev
+</pre></div>
+</div>
+</div>
+<div class="section" id="macos">
+<h3>MacOS<a class="headerlink" href="#macos" title="Permalink to this headline">¶</a></h3>
+<p>Vineyard has been tests on MacOS as well, the dependencies can be installed using <code class="code docutils literal notranslate"><span class="pre">brew</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>brew install apache-arrow boost gflags glog grpc protobuf mpich openssl zlib
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="install-from-source">
+<h2>Install from source<a class="headerlink" href="#install-from-source" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard is open source on Github: <a class="reference external" href="https://github.com/v6d-io/v6d">https://github.com/v6d-io/v6d</a>.
+You can obtain the source code using <code class="docutils literal notranslate"><span class="pre">git</span></code>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git clone https://github.com/v6d-io/v6d</span>
+<span class="go">cd v6d</span>
+<span class="go">git submodule update --init</span>
+</pre></div>
+</div>
+<p>Then you do a out-of-source build using CMake:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir build
+<span class="nb">cd</span> build
+cmake ..
+make -j<span class="k">$(</span>nproc<span class="k">)</span>
+make install  <span class="c1"># optionally</span>
+</pre></div>
+</div>
+<p>You will see vineyard server binary under the <code class="docutils literal notranslate"><span class="pre">bin</span></code> directory, and static or shared linked
+libraries will be placed under the <code class="docutils literal notranslate"><span class="pre">lib</span></code> folder.</p>
+</div>
+<div class="section" id="build-python-wheels">
+<h2>Build python wheels<a class="headerlink" href="#build-python-wheels" title="Permalink to this headline">¶</a></h2>
+<p>After building the vineyard library successfully, you can package a install wheel distribution by</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>python3 setup.py bdist_wheel
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <a href="../index.html" class="btn btn-neutral float-left" title="What is vineyard" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <a href="getting-started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+
+      <p>
+        Vineyard is a <a href="https://www.cncf.io/sandbox-projects/">CNCF sandbox project</a>.
+      </p>
+      <img src="https://v6d.io/_static/cncf-color.svg" alt="CLOUD NATIVE COMPUTING FOUNDATION" width="40%"/>
+      <p>
+        The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation,
+        please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage page</a>.
+      </p>
+
+      <hr/>&#169; Copyright 2019-2021, The Vineyard Contributors.
+
+      <p></p>
+    </div>
+  
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+      <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+     
+  
+  </footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Contributing to vineyard &mdash; vineyard  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/vineyard.ico"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Roadmap" href="roadmap.html" />
+
+ 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6CYXWKLJB8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6CYXWKLJB8');
+</script>
+
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> vineyard
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.6
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="divein.html">Diving into vineyard</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api.html">C++ API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api.html">Python API Reference</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="faq.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to vineyard</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-development-dependencies">Install development dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-the-source">Build the source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bug-report-and-pull-requests">Bug report and pull requests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#code-format">Code format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#open-a-pull-request">Open a pull request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#git-workflow-for-newcomers">Git workflow for newcomers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cut-a-release">Cut a release</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vineyard</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Contributing to vineyard</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/notes/contributing.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contributing-to-vineyard">
+<h1>Contributing to vineyard<a class="headerlink" href="#contributing-to-vineyard" title="Permalink to this headline">¶</a></h1>
+<p>Vineyard has been developed by an active team of software engineers and
+researchers. Any contributions from the open-source community to improve this
+project are welcome!</p>
+<p>Vineyard is licensed under <a class="reference external" href="https://github.com/v6d-io/v6d/blob/main/LICENSE">Apache License 2.0</a>.</p>
+<div class="section" id="install-development-dependencies">
+<h2>Install development dependencies<a class="headerlink" href="#install-development-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard requires the following C++ packages for development:</p>
+<ul class="simple">
+<li><p>apache-arrow &gt;= 0.17.1</p></li>
+<li><p>gflags</p></li>
+<li><p>glog</p></li>
+<li><p>boost</p></li>
+<li><p>gtest, for build test suites</p></li>
+<li><p>protobuf</p></li>
+<li><p>grpc</p></li>
+</ul>
+<p>and the following python packages that can be easily installed using <cite>pip</cite>:</p>
+<ul class="simple">
+<li><p>libclang</p></li>
+<li><p>parsec</p></li>
+</ul>
+</div>
+<div class="section" id="build-the-source">
+<h2>Build the source<a class="headerlink" href="#build-the-source" title="Permalink to this headline">¶</a></h2>
+<p>You can do an out-of-source build using CMake:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir build
+<span class="nb">cd</span> build
+cmake ..
+make -j<span class="k">$(</span>nproc<span class="k">)</span>
+</pre></div>
+</div>
+<p>The vineyardd target will be generated under the <cite>bin</cite> directory.</p>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Documentation is generated using Doxygen and sphinx. Users can build vineyard’s
+documentation in the <code class="code docutils literal notranslate"><span class="pre">docs/</span></code> directory using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docs/
+make html
+</pre></div>
+</div>
+<p>The HTML documentation will be available under <cite>docs/_build/html</cite>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>open _build/html/index.html
+</pre></div>
+</div>
+<p>The latest version of online documentation can be found at <a class="reference external" href="https://v6d.io">https://v6d.io</a>.</p>
+<p>Vineyard provides comprehensive documents to explain the underlying
+design and implementation details. The documentation follows the syntax
+of Doxygen and sphinx markup. If you find anything you can help, submit
+pull request to us. Thanks for your enthusiasm!</p>
+</div>
+<div class="section" id="bug-report-and-pull-requests">
+<h2>Bug report and pull requests<a class="headerlink" href="#bug-report-and-pull-requests" title="Permalink to this headline">¶</a></h2>
+<p>Vineyard is hosted on Github, and use Github issues as the bug tracker.
+You can <a class="reference external" href="https://github.com/v6d-io/v6d/issues/new/new">file an issue</a> when you find anything that is expected to work
+with vineyard but it doesn’t.</p>
+<p>Before creating a new bug entry, we recommend you first <cite>search</cite> among existing
+vineyard bugs to see if it has already been resolved.</p>
+<p>When creating a new bug entry, please provide necessary information of your
+problem in the description, such as operating system version, vineyard
+version, and other system configurations to help us diagnose the problem.</p>
+<p>We also welcome any help on vineyard from the community, including but not
+limited to fixing bugs and adding new features. Our project vineyard has enabled
+<a class="reference external" href="https://github.com/apps/dco">DCO</a> thus you will be asked to <a class="reference external" href="https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s">sign-off</a> your commits that are included in
+your pull requests. Git has a <code class="code docutils literal notranslate"><span class="pre">-s</span></code> command line option that can <a class="reference external" href="https://git-scm.com/docs/git-commit#Documentation/git-commit.txt--s">sign-off</a>
+your commit automatically:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git commit -s -m <span class="s1">&#39;This is my commit message&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="code-format">
+<h3>Code format<a class="headerlink" href="#code-format" title="Permalink to this headline">¶</a></h3>
+<p>Vineyard follows the <a class="reference external" href="https://google.github.io/styleguide/cppguide.html">Google C++ Style Guide</a>. When submitting patches
+to vineyard, please format your code with clang-format by
+the Makefile command <cite>make vineyard_clformat</cite>, and make sure your code doesn’t
+break the cpplint convention using the CMakefile command <cite>make vineyard_cpplint</cite>.</p>
+</div>
+<div class="section" id="open-a-pull-request">
+<h3>Open a pull request<a class="headerlink" href="#open-a-pull-request" title="Permalink to this headline">¶</a></h3>
+<p>When opening issues or submitting pull requests, we’ll ask you to prefix the
+pull request title with the issue number and the kind of patch (<cite>BUGFIX</cite> or <cite>FEATURE</cite>)
+in brackets, for example, <cite>[BUGFIX-1234] Fix crash in sealing vector to vineyard</cite>
+or <cite>[FEATURE-2345] Support seamless operability with PyTorch’s tensors</cite>.</p>
+</div>
+<div class="section" id="git-workflow-for-newcomers">
+<h3>Git workflow for newcomers<a class="headerlink" href="#git-workflow-for-newcomers" title="Permalink to this headline">¶</a></h3>
+<p>You generally do NOT need to rebase your pull requests unless there are merge
+conflicts with the main. When Github complaining that “Can’t automatically merge”
+on your pull request, you’ll be asked to rebase your pull request on top of
+the latest main branch, using the following commands:</p>
+<ul class="simple">
+<li><p>First rebasing to the most recent main:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git remote add upstream https://github.com/v6d-io/v6d.git
+git fetch upstream
+git rebase upstream/main
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Then git may show you some conflicts when it cannot merge, say <cite>conflict.cpp</cite>,
+you need
+- Manually modify the file to resolve the conflicts
+- After resolved, mark it as resolved by</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git add conflict.cpp
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Then you can continue rebasing by</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git rebase --continue
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Finally push to your fork, then the pull request will be got updated:</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git push --force
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="cut-a-release">
+<h2>Cut a release<a class="headerlink" href="#cut-a-release" title="Permalink to this headline">¶</a></h2>
+<p>The vineyard python package is built using the <a class="reference external" href="https://github.com/pypa/manylinux">manylinux1</a> environments. The
+release version is built with Docker. The description of the base image can be
+found at <a class="reference external" href="https://github.com/v6d-io/v6d/blob/main/docker/pypa/Dockerfile.manylinux1">docker/pypa/Dockerfile.manylinux1</a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+      <div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+          <a href="roadmap.html" class="btn btn-neutral float-left" title="Roadmap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      </div>
+  
+    <hr/>
+  
+    <div role="contentinfo">
+
+      <p>
+        Vineyard is a <a href="https://www.cncf.io/sandbox-projects/">CNCF sandbox project</a>.
+      </p>
+      <img src="https://v6d.io/_static/cncf-color.svg" alt="CLOUD NATIVE COMPUTING FOUNDATION" width="40%"/>
+      <p>
+        The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation,
+        please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage page</a>.
+      </p>
+
+      <hr/>&#169; Copyright 2019-2021, The Vineyard Contributors.
+
+      <p></p>
+    </div>
+  
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+      <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>provided by <a href="https://readthedocs.org">Read the Docs</a>.
+     
+  
+  </footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
